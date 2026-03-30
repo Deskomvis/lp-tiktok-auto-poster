@@ -1,0 +1,134 @@
+---
+// HowItWorks.astro
+const steps = [
+  {
+    title: "Langkah 1: Siapkan Folder & Detail",
+    desc: "Kumpulkan semua video, caption, dan daftar link ID produk TikTok Shop yang ingin di-upload ke dalam satu direktori."
+  },
+  {
+    title: "Langkah 2: Buka Software",
+    desc: "Jalankan custom RPA software di PC/Laptop kamu. Tidak perlu capek login-logout akun satu persatu secara manual."
+  },
+  {
+    title: "Langkah 3: Eksekusi Otomatis Berjalan",
+    desc: "Klik start! Auto nge-klik, kasih deskripsi, upload file, hingga menautkan keranjang kuning semuanya berjalan otomatis."
+  }
+];
+---
+<section class="section how-it-works">
+  <div class="container text-center">
+    <div class="section-badge">MUDAH & PRAKTIS</div>
+    <h2>Sistem yang Orang Lain <span class="text-primary highlight">BAYAR MAHAL</span> untuk Tahu</h2>
+    <p class="subtitle text-muted">Dulu tools seperti ini berbiaya jutaan per bulan. Sekarang kami jadikan lebih sederhana dan terjangkau.</p>
+    
+    <div class="steps-container">
+      {steps.map((step, index) => (
+        <div class="step-card">
+          <div class="step-number">{index + 1}</div>
+          <h3>{step.title}</h3>
+          <p class="text-muted">{step.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .how-it-works {
+    background: linear-gradient(180deg, var(--bg-color) 0%, rgba(99, 102, 241, 0.05) 50%, #ffffff 100%);
+  }
+
+  .section-badge {
+    display: inline-block;
+    color: var(--primary);
+    background: rgba(79, 70, 229, 0.1);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .subtitle {
+    max-width: 600px;
+    margin: 0 auto 60px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .highlight {
+    background: linear-gradient(90deg, var(--primary) 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .steps-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .step-card {
+    background: var(--white);
+    padding: 40px;
+    border-radius: var(--card-radius);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    position: relative;
+    border: 1px solid rgba(0,0,0,0.03);
+    transition: transform 0.3s;
+  }
+
+  .step-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .step-number {
+    position: absolute;
+    top: -20px;
+    left: 40px;
+    width: 48px;
+    height: 48px;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    border-radius: 50%;
+    box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
+    border: 4px solid var(--white);
+  }
+
+  .step-card h3 {
+    margin-top: 10px;
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+  }
+
+  .step-card p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    h2 { font-size: 2rem; }
+    .step-card { padding: 30px 20px; }
+    .step-number { left: 20px; }
+  }
+</style>

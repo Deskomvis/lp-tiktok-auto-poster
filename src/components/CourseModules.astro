@@ -1,0 +1,207 @@
+---
+// CourseModules.astro
+const modules = [
+  {
+    num: "1",
+    title: "Persiapan & Instalasi Sistem",
+    lessons: [
+      "Intro",
+      "Download Browser Anti Fingerprint"
+    ]
+  },
+  {
+    num: "2",
+    title: "Setup Keamanan Akun",
+    subtitle: "Anti-Detect Browser & Proxy",
+    lessons: [
+      "Panduan Beli Proxy",
+      "Setting Anti-Detect Browser",
+      "Tambah Profile di Anti-Detect Browser",
+      "Login Akun TikTok di Profile"
+    ]
+  },
+  {
+    num: "3",
+    title: "Konfigurasi Tool Automasi",
+    subtitle: "TikTok AutoPoster",
+    lessons: [
+      "Menghubungkan Anti-Detect Browser ke Software",
+      "Export/Import Profile"
+    ]
+  },
+  {
+    num: "4",
+    title: "Operasional Upload Massal",
+    subtitle: "Bulk Upload Eksekusi",
+    lessons: [
+      "Intro Software",
+      "Bulk Upload Setting",
+      "Start Upload"
+    ]
+  }
+];
+---
+
+<section class="section modules-section">
+  <div class="container text-center">
+    <div class="section-badge">MATERI TERLENGKAP</div>
+    <h2>Apa Saja yang Akan <span class="text-primary highlight">Kamu Pelajari?</span></h2>
+    <p class="subtitle text-muted">Tutorial step-by-step dari nol hingga kamu mahir melakukan upload ratusan video ke banyak akun sekaligus secara aman.</p>
+    
+    <div class="modules-grid">
+      {modules.map((mod) => (
+        <div class="module-card">
+          <div class="mod-header">
+            <div class="mod-num">Modul {mod.num}</div>
+            <h3 class="mod-title">{mod.title}</h3>
+            {mod.subtitle && <p class="mod-subtitle">{mod.subtitle}</p>}
+          </div>
+          <div class="mod-body">
+            <ul class="lesson-list">
+              {mod.lessons.map(lesson => (
+                <li>
+                  <span class="check-icon">▶</span>
+                  {lesson}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .modules-section {
+    background-color: #f8fafc;
+    position: relative;
+    padding: 80px 0;
+  }
+
+  .section-badge {
+    display: inline-block;
+    color: var(--primary);
+    background: rgba(79, 70, 229, 0.1);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+
+  .subtitle {
+    max-width: 600px;
+    margin: 0 auto 50px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .highlight {
+    background: linear-gradient(90deg, var(--primary) 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .module-card {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .module-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+
+  .mod-header {
+    background: linear-gradient(135deg, var(--dark-violet) 0%, #312e81 100%);
+    color: white;
+    padding: 30px 25px;
+  }
+
+  .mod-num {
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #a5b4fc;
+    margin-bottom: 8px;
+  }
+
+  .mod-title {
+    color: white;
+    font-size: 1.4rem;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .mod-subtitle {
+    margin-top: 5px;
+    font-size: 0.95rem;
+    color: #e0e7ff;
+    opacity: 0.9;
+  }
+
+  .mod-body {
+    padding: 25px;
+    flex-grow: 1;
+  }
+
+  .lesson-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .lesson-list li {
+    padding: 12px 0;
+    border-bottom: 1px dashed #e2e8f0;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 0.95rem;
+    color: var(--text-main);
+  }
+
+  .lesson-list li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .lesson-list li:first-child {
+    padding-top: 0;
+  }
+
+  .check-icon {
+    color: var(--primary);
+    font-size: 0.8rem;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .modules-grid { grid-template-columns: 1fr; }
+    h2 { font-size: 2rem; }
+  }
+</style>

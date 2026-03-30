@@ -1,0 +1,76 @@
+---
+// FomoBanner.astro - Urgency / Scarcity strip
+---
+
+<div class="fomo-strip">
+  <div class="container fomo-inner">
+    <span class="fomo-pulse"></span>
+    <p>⚡ <strong>PERINGATAN:</strong> Harga bisa naik kapan saja tanpa pemberitahuan. <span class="fomo-highlight">Amankan aksesmu SEKARANG</span> sebelum terlambat.</p>
+  </div>
+</div>
+
+<style>
+  .fomo-strip {
+    background: linear-gradient(90deg, #dc2626 0%, #b91c1c 100%);
+    color: white;
+    padding: 14px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 100;
+  }
+
+  .fomo-strip::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+
+  .fomo-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .fomo-pulse {
+    width: 10px;
+    height: 10px;
+    background: #fbbf24;
+    border-radius: 50%;
+    animation: blink 1s infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .fomo-strip p {
+    font-size: 0.95rem;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .fomo-highlight {
+    background: rgba(255,255,255,0.2);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 800;
+  }
+
+  @media (max-width: 768px) {
+    .fomo-strip p { font-size: 0.85rem; }
+  }
+</style>

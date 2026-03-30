@@ -1,0 +1,149 @@
+---
+// Hero.astro
+---
+<section class="hero-section">
+  <div class="container hero-container">
+    <div class="hero-content">
+      <div class="badge">🔥 E-COURSE & TOOLS UPLOAD TIKTOK MASAL</div>
+      <h1>
+        Kompetitor Kamu <br/>
+        <span class="text-primary italic-text">Sudah Pakai Ini.</span> <br/>
+        Kamu Masih <br/>
+        Manual?
+      </h1>
+      <p class="hero-desc">
+        Punya banyak akun TikTok tapi capek harus upload video satu per satu secara manual? 
+        Dalam spesialis ekosistem ini, kamu akan diajarkan cara <strong>upload masal</strong> ke puluhan akun dengan sekali klik, 
+        lengkap dengan fitur menautkan <strong>Keranjang Kuning</strong> otomatis!
+      </p>
+      <div class="cta-wrapper">
+        <a href="https://prodig.deskomvis.com/checkout-tiktok-autopost" class="btn btn-primary btn-pulse">
+          🚀 SAYA MAU OTOMATIS SEKARANG!
+        </a>
+        <p class="cta-note">🔥 Diskon Spesial & Terbatas! Jangan Sampai Kehabisan</p>
+        <div class="live-counter">
+          <span class="live-dot"></span>
+          <span id="live-viewers"></span> orang sedang melihat halaman ini
+        </div>
+      </div>
+      <script is:inline>
+        const el = document.getElementById('live-viewers');
+        if(el) el.textContent = Math.floor(Math.random() * 15) + 12;
+        setInterval(() => { if(el) el.textContent = Math.floor(Math.random() * 15) + 12; }, 8000);
+      </script>
+    </div>
+    <div class="hero-image">
+      <img src="/hero-image.png" alt="TikTok Auto Poster Dashboard" class="hero-mockup-img float-anim" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    padding: 100px 0 60px;
+    background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at bottom right, rgba(99, 102, 241, 0.05) 0%, transparent 40%);
+  }
+
+  .hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--accent-red);
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 24px;
+  }
+
+  h1 {
+    font-size: 3.5rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+
+  .italic-text {
+    font-style: italic;
+    background: linear-gradient(90deg, var(--primary) 0%, #818cf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-desc {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+    max-width: 90%;
+  }
+
+  .cta-note {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .live-counter {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .live-dot {
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    animation: blink-dot 1.2s infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes blink-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* Mockup Styling */
+  .hero-image {
+    position: relative;
+    perspective: 1000px;
+  }
+
+  .hero-mockup-img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    background: transparent;
+    border: none;
+    filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.15));
+  }
+
+  .float-anim {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @media (max-width: 992px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    
+    h1 { font-size: 2.8rem; }
+    .hero-desc { margin: 0 auto 32px; }
+    .button-group { justify-content: center; }
+    .hero-mockup-img { margin-top: 40px; }
+  }
+</style>

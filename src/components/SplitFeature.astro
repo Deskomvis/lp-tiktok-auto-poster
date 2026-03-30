@@ -1,0 +1,152 @@
+---
+// SplitFeature.astro
+---
+<section class="section split-section">
+  <div class="container container-split">
+    <div class="split-left card dark-card">
+      <div class="shield-icon">🛡️</div>
+      <h2>100% Anti-Detect — Akun Kamu <span class="text-gradient">AMAN</span></h2>
+      <p class="desc">
+        Sistem kami dibangun secara eksklusif mengikuti ketentuan dari TikTok Studio secara organik.
+        Menghindari blokir massal dan proxy detector sehingga kamu tidak perlu takut kena penalti atau shadowban seperti pada bot lainnya.
+      </p>
+    </div>
+    <div class="split-right">
+      <div class="card right-card h-effect">
+        <div class="r-icon">⚡</div>
+        <div>
+          <h3>Browser Anti-Fingerprint & RPA</h3>
+          <p class="text-muted">Tidak menggunakan API cloud yang berisiko, melainkan kombinasi browser anti-detecting fingerprint khusus dan RPA (Robotic Process Automation) software agar akun tetap aman.</p>
+        </div>
+      </div>
+      <div class="card right-card h-effect">
+        <div class="r-icon">🌐</div>
+        <div>
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            Software Khusus
+            <span style="display: flex; gap: 6px; align-items: center; color: var(--text-muted);">
+              <svg width="20" height="20" viewBox="0 0 448 512" fill="currentColor">
+                <path d="M0 93.7l183.6-25.3v177.4H0V93.7zm0 324.6l183.6 25.3V268.4H0v149.9zm203.8 28L448 480V268.4H203.8v177.9zm0-380.6v180.1H448V32L203.8 65.7z"/>
+              </svg>
+              <svg width="20" height="20" viewBox="0 0 384 512" fill="currentColor">
+                <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+              </svg>
+            </span>
+          </h3>
+          <p class="text-muted">Software ini perlu diinstall di PC atau Laptop Windows atau MAC Os Anda. Sangat mumpuni untuk mengeksekusi upload masal ke banyak akun tanpa henti secara instan.</p>
+        </div>
+      </div>
+      <div class="promo-box">
+        🔥 <strong>Promo Spesial:</strong> Akses Selamanya - SEKALI BAYAR
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .split-section {
+    background-color: var(--bg-color);
+  }
+
+  .container-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: stretch;
+  }
+
+  .dark-card {
+    background: linear-gradient(135deg, var(--dark-card) 0%, var(--dark-violet) 100%);
+    color: var(--white);
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: none;
+    box-shadow: 0 25px 50px -12px rgba(30, 27, 75, 0.5);
+  }
+
+  .shield-icon {
+    font-size: 3rem;
+    margin-bottom: 24px;
+    background: rgba(255,255,255,0.1);
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+  }
+
+  .dark-card h2 {
+    color: var(--white);
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+  }
+
+  .text-gradient {
+    background: linear-gradient(90deg, #38bdf8 0%, #818cf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .dark-card .desc {
+    color: #cbd5e1;
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+
+  .split-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .right-card {
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+    align-items: flex-start;
+  }
+
+  .r-icon {
+    font-size: 2rem;
+    background: #eef2ff;
+    padding: 15px;
+    border-radius: 16px;
+  }
+
+  .right-card h3 {
+    margin-bottom: 8px;
+    font-size: 1.25rem;
+  }
+
+  .h-effect:hover {
+    transform: translateX(-10px);
+  }
+
+  .promo-box {
+    margin-top: 10px;
+    background: rgba(239, 68, 68, 0.05);
+    border: 1px dashed rgba(239, 68, 68, 0.4);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    color: var(--accent-red);
+    font-weight: 500;
+  }
+
+  @media (max-width: 900px) {
+    .container-split {
+      grid-template-columns: 1fr;
+    }
+    .dark-card {
+      padding: 40px 30px;
+    }
+    .h-effect:hover {
+      transform: translateY(-5px);
+    }
+  }
+</style>

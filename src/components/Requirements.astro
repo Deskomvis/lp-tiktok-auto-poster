@@ -1,0 +1,108 @@
+---
+// Requirements.astro
+const reqs = [
+  { icon: "💻", title: "Laptop / PC", desc: "Minimal RAM 4GB" },
+  { icon: "🌐", title: "Koneksi Internet", desc: "Stabil & Lancar" },
+  { icon: "🔑", title: "Akun TikTok", desc: "Email & Password" },
+  { icon: "🛡️", title: "Budget Proxy", desc: "Opsional" }
+];
+---
+
+<section class="section requirements-section">
+  <div class="container text-center">
+    <div class="section-badge">PERSIAPAN MINIMAL</div>
+    <h2>Yang Kamu Butuhkan <span class="highlight">Hanya Ini</span></h2>
+    <p class="subtitle text-muted">Tidak perlu spek dewa. Cukup modal standar berikut ini dan kamu sudah bisa langsung jalankan sistem automation upload TikTok masal.</p>
+
+    <div class="req-grid">
+      {reqs.map((req) => (
+        <div class="req-card">
+          <div class="req-icon">{req.icon}</div>
+          <h3>{req.title}</h3>
+          <p class="text-muted">{req.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .requirements-section {
+    background: var(--white);
+    padding: 70px 0;
+  }
+
+  .section-badge {
+    display: inline-block;
+    color: var(--primary);
+    background: rgba(79, 70, 229, 0.1);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+
+  .highlight {
+    background: linear-gradient(90deg, var(--primary) 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .subtitle {
+    max-width: 600px;
+    margin: 0 auto 50px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .req-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .req-card {
+    background: linear-gradient(180deg, #fafbff 0%, #f3f4f6 100%);
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 16px;
+    padding: 30px 20px;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+
+  .req-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .req-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+  }
+
+  .req-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+  }
+
+  .req-card p {
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    .req-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    h2 { font-size: 2rem; }
+  }
+
+  @media (max-width: 480px) {
+    .req-grid { grid-template-columns: 1fr; }
+  }
+</style>

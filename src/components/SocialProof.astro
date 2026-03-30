@@ -1,0 +1,77 @@
+---
+// SocialProof.astro
+const roles = [
+  "Ternak Akun TikTok",
+  "Affiliator TikTok",
+  "Kreator TikTok",
+  "Brand Owner",
+  "Agency Sosial Media"
+];
+---
+
+<section class="social-proof-section">
+  <div class="container text-center">
+    <p class="sp-title">Tools ini sangat cocok digunakan untuk para:</p>
+    <div class="roles-wrapper">
+      {roles.map(role => (
+        <div class="role-badge">
+          ✅ {role}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .social-proof-section {
+    padding: 30px 0 50px;
+    background: transparent;
+    margin-top: -20px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .sp-title {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .roles-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .role-badge {
+    background: var(--white);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    color: var(--dark-violet);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-size: 0.95rem;
+  }
+
+  .role-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(79, 70, 229, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    .roles-wrapper {
+      gap: 12px;
+    }
+    .role-badge {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
+  }
+</style>

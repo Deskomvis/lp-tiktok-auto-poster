@@ -1,0 +1,159 @@
+---
+// CheckoutForm.astro
+---
+<section class="section checkout-section">
+  <div class="container text-center">
+    <h2>Setup 5 Menit — Hasilnya <span class="text-primary highlight">SEUMUR HIDUP</span></h2>
+    <p class="subtitle text-muted">Investasi Terbaik Dalam Karir TikTok kamu. Jangan biarkan FYP-mu diambil kompetitor!</p>
+    
+    <div class="guarantee-badges">
+      <div class="g-badge">✅ Akses Selamanya</div>
+      <div class="g-badge">✅ Update Gratis</div>
+      <div class="g-badge">✅ Panduan Lengkap</div>
+      <div class="g-badge">✅ Support Group</div>
+    </div>
+
+    <div class="form-wrapper">
+      <div class="form-card-glow"></div>
+      <div class="form-card">
+        <div class="limited-banner">
+          ⏰ HARGA PROMO TERBATAS — Bisa Naik Kapan Saja!
+        </div>
+        <!-- USER REQUESTED IFRAME START -->
+        <iframe id="myiframe" width="100%" frameborder="0" src="https://prodig.deskomvis.com/checkout-tiktok-autopost"></iframe>
+        <script>
+          const iframe=document.getElementById('myiframe')
+          function resizeIframe(height){iframe.style.height=height+'px'}
+          function isUrl(string){try{new URL(string); return true}catch(_){return false}}
+          function isJSONObject(string){try{const parsed=JSON.parse(string); return typeof parsed==='object'&&parsed!==null}catch(e){return false}}
+          function isIframeSameOrigin(){try{const doc=iframe.contentDocument||iframe.contentWindow.document; return true}catch(e){return false}}
+          window.addEventListener('message',function(e){if(e.origin==='https://prodig.deskomvis.com'){if(isUrl(e.data)){location.href=e.data}
+          if(isJSONObject(e.data)&&!isIframeSameOrigin()){const message=JSON.parse(e.data)
+          if(message.type==='resize'){resizeIframe(message.height)}}}},false)
+          document.addEventListener('DOMContentLoaded', function () {var observer = new IntersectionObserver(function (entries) {
+          entries.forEach((entry) => {if (entry.isIntersecting) {
+          iframe.src = iframe.src
+          observer.disconnect()}})})
+          observer.observe(iframe)})
+        </script>
+        <!-- USER REQUESTED IFRAME END -->
+      </div>
+    </div>
+
+    <div class="risk-reversal">
+      <p>🔒 Pembayaran aman & terenkripsi. Akses langsung setelah pembayaran dikonfirmasi.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .checkout-section {
+    padding: 100px 0;
+    background: linear-gradient(180deg, #f8fafc 0%, #eff6ff 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  h2 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+  }
+
+  .subtitle {
+    max-width: 600px;
+    margin: 0 auto 50px;
+    font-size: 1.2rem;
+  }
+
+  .highlight {
+    background: linear-gradient(90deg, var(--primary) 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .form-wrapper {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  .form-card-glow {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.4) 0%, rgba(139, 92, 246, 0.1) 100%);
+    filter: blur(40px);
+    z-index: 1;
+    border-radius: 40px;
+  }
+
+  .form-card {
+    position: relative;
+    z-index: 2;
+    background: var(--white);
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    min-height: 600px;
+  }
+
+  .guarantee-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .g-badge {
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    color: #065f46;
+    font-size: 0.95rem;
+  }
+
+  .limited-banner {
+    background: linear-gradient(90deg, #fef3c7 0%, #fde68a 100%);
+    border: 1px solid #f59e0b;
+    color: #92400e;
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 14px 20px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    text-align: center;
+    animation: bannerPulse 3s infinite;
+  }
+
+  @keyframes bannerPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+
+  .risk-reversal {
+    margin-top: 30px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  .risk-reversal p {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0,0,0,0.03);
+    padding: 10px 20px;
+    border-radius: 50px;
+  }
+
+  @media (max-width: 768px) {
+    h2 { font-size: 2.2rem; }
+    .form-card { padding: 20px 10px; }
+  }
+</style>

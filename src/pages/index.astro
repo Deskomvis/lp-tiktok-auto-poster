@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FomoBanner from '../components/FomoBanner.astro';
+import Hero from '../components/Hero.astro';
+import SocialProof from '../components/SocialProof.astro';
+import Features from '../components/Features.astro';
+import SplitFeature from '../components/SplitFeature.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Comparison from '../components/Comparison.astro';
+import CourseModules from '../components/CourseModules.astro';
+import Requirements from '../components/Requirements.astro';
+import Urgency from '../components/Urgency.astro';
+import CheckoutForm from '../components/CheckoutForm.astro';
+---
+
+<Layout title="TikTok Auto Poster - Tools Upload TikTok Masal & E-Course Lengkap">
+	<main>
+		<FomoBanner />
+		<Hero />
+		<SocialProof />
+		<Features />
+		<SplitFeature />
+		<HowItWorks />
+		<Comparison />
+		<CourseModules />
+		<Requirements />
+		<Urgency />
+		<CheckoutForm />
+	</main>
+	
+	<footer class="footer">
+		<div class="container text-center text-muted">
+			<p>&copy; {new Date().getFullYear()} TikTok Auto Poster. All rights reserved.</p>
+			<p class="small-text mt-2">Ini adalah layanan pihak ketiga, tidak terafiliasi resmi dengan TikTok Inc.</p>
+		</div>
+	</footer>
+</Layout>
+
+<style>
+	main {
+		width: 100%;
+		overflow-x: hidden;
+	}
+	
+	.footer {
+		background-color: var(--bg-color);
+		padding: 40px 0;
+		border-top: 1px solid #e2e8f0;
+	}
+	
+	.mt-2 {
+		margin-top: 8px;
+	}
+	
+	.small-text {
+		font-size: 0.85rem;
+		opacity: 0.8;
+	}
+</style>

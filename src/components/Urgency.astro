@@ -1,0 +1,161 @@
+---
+// Urgency.astro - countdown / fear section before checkout
+---
+
+<section class="urgency-section">
+  <div class="container text-center">
+    <div class="urgency-card">
+      <div class="fire-emoji">🔥🔥🔥</div>
+      <h2>Setiap Detik yang Kamu Tunda, <br/><span class="text-red">Kompetitor Sudah Upload 10 Video Lebih!</span></h2>
+      <p class="urgency-desc">
+        Bayangkan: Saat kamu masih bimbang, puluhan affiliator lain sudah menjalankan software ini 
+        dan <strong>menyedot komisi dari produk yang sama</strong> dengan yang kamu jual. 
+        Mereka upload ke 20+ akun sekaligus. Kamu? Masih manual. <strong>Masih satu per satu.</strong>
+      </p>
+      <div class="fear-stats">
+        <div class="stat-item">
+          <div class="stat-num">20x</div>
+          <div class="stat-label">Lebih Cepat Upload</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">50+</div>
+          <div class="stat-label">Akun Sekaligus</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">24/7</div>
+          <div class="stat-label">Non-Stop Otomatis</div>
+        </div>
+      </div>
+      <div class="warning-box">
+        ⚠️ <strong>Harga promo ini TIDAK akan bertahan lama.</strong> Begitu kuota habis, harga kembali ke harga normal TANPA DISKON.
+      </div>
+      <a href="https://prodig.deskomvis.com/checkout-tiktok-autopost" class="btn btn-danger btn-pulse-red">
+        🛒 AMANKAN SEKARANG SEBELUM HARGA NAIK!
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .urgency-section {
+    padding: 80px 0;
+    background: linear-gradient(180deg, #fef2f2 0%, #fff 100%);
+  }
+
+  .urgency-card {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 50px;
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(220, 38, 38, 0.15);
+    border: 2px solid rgba(239, 68, 68, 0.15);
+  }
+
+  .fire-emoji {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 2.2rem;
+    margin-bottom: 24px;
+    line-height: 1.3;
+  }
+
+  .text-red {
+    color: #dc2626;
+  }
+
+  .urgency-desc {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 40px;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .fear-stats {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #dc2626;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+    font-weight: 600;
+  }
+
+  .warning-box {
+    background: #fef3c7;
+    border: 1px solid #f59e0b;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-size: 1rem;
+    color: #92400e;
+    margin-bottom: 30px;
+    animation: shake 5s infinite;
+  }
+
+  @keyframes shake {
+    0%, 90%, 100% { transform: translateX(0); }
+    92% { transform: translateX(-4px); }
+    94% { transform: translateX(4px); }
+    96% { transform: translateX(-4px); }
+    98% { transform: translateX(4px); }
+  }
+
+  .btn-danger {
+    background: linear-gradient(90deg, #dc2626 0%, #b91c1c 100%);
+    color: white;
+    padding: 18px 40px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+    box-shadow: 0 10px 25px -5px rgba(220, 38, 38, 0.5);
+  }
+
+  .btn-danger:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 30px -5px rgba(220, 38, 38, 0.6);
+  }
+
+  .btn-pulse-red {
+    animation: pulseRed 2s infinite;
+  }
+
+  @keyframes pulseRed {
+    0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(220, 38, 38, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+  }
+
+  @media (max-width: 768px) {
+    .urgency-card { padding: 40px 20px; }
+    h2 { font-size: 1.8rem; }
+    .fear-stats { flex-direction: column; gap: 20px; }
+    .btn-danger { width: 100%; justify-content: center; font-size: 1rem; padding: 16px 24px; }
+  }
+</style>
