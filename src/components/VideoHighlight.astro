@@ -18,10 +18,11 @@ const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
     
     <div class="video-container" id="video-facade">
       <div class="video-facade-trigger" data-video-id={videoId}>
-        <img 
+        <Image 
           src={thumbnailUrl} 
           alt={title}
           class="video-thumbnail"
+          inferSize
           loading="lazy"
         />
         <div class="play-button">
