@@ -17,7 +17,7 @@ const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
     <h2 class="text-center">Lihat Bagaimana <span class="highlight">Otomatisasi</span> Ini Bekerja</h2>
     
     <div class="video-container" id="video-facade">
-      <div class="video-facade-trigger" data-video-id={videoId}>
+      <div class="video-facade-trigger" data-video-id={videoId} role="button" tabindex="0" aria-label="Putar Video Demo Software">
         <Image 
           src={thumbnailUrl} 
           alt={title}
@@ -25,8 +25,8 @@ const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
           inferSize
           loading="lazy"
         />
-        <div class="play-button">
-          <svg viewBox="0 0 24 24" fill="currentColor">
+        <div class="play-button" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" focusable="false" aria-hidden="true">
             <path d="M8 5v14l11-7z"/>
           </svg>
         </div>
@@ -117,7 +117,7 @@ const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
   document.addEventListener('DOMContentLoaded', () => {
     const trigger = document.querySelector('.video-facade-trigger');
     if (trigger) {
-      trigger.addEventListener('click', () => {
+      const playVideo = () => {
         const videoId = trigger.getAttribute('data-video-id');
         const container = document.getElementById('video-facade');
         
@@ -126,7 +126,7 @@ const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
             width="100%" 
             height="100%" 
             src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
-            title="YouTube video player" 
+            title="Semat video demo perangkat lunak TikTok Auto Poster" 
             frameborder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             referrerpolicy="strict-origin-when-cross-origin" 
@@ -134,6 +134,14 @@ const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
           ></iframe>
         `;
+      };
+      
+      trigger.addEventListener('click', playVideo);
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          playVideo();
+        }
       });
     }
   });
