@@ -1,0 +1,139 @@
+---
+// VideoHighlight.astro
+import { Image } from 'astro:assets';
+
+interface Props {
+  videoId?: string;
+  title?: string;
+}
+
+const { videoId = "UO44VKi4nN4", title = "Highlight Video TikTok Software - Mass Uploader" } = Astro.props;
+const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+---
+
+<section class="video-highlight-section">
+  <div class="container">
+    <div class="section-badge text-center">DEMO SOFTWARE</div>
+    <h2 class="text-center">Lihat Bagaimana <span class="highlight">Otomatisasi</span> Ini Bekerja</h2>
+    
+    <div class="video-container" id="video-facade">
+      <div class="video-facade-trigger" data-video-id={videoId}>
+        <img 
+          src={thumbnailUrl} 
+          alt={title}
+          class="video-thumbnail"
+          loading="lazy"
+        />
+        <div class="play-button">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .video-highlight-section {
+    padding: 80px 0;
+    background-color: #fff;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+  }
+
+  .video-container {
+    max-width: 900px;
+    margin: 0 auto;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+    position: relative;
+    cursor: pointer;
+  }
+
+  .video-facade-trigger {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .video-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+    transition: opacity 0.3s, transform 0.5s;
+  }
+
+  .video-container:hover .video-thumbnail {
+    opacity: 0.6;
+    transform: scale(1.02);
+  }
+
+  .play-button {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.5);
+    transition: transform 0.3s;
+    z-index: 2;
+  }
+
+  .play-button svg {
+    width: 40px;
+    height: 40px;
+    margin-left: 4px;
+  }
+
+  .video-container:hover .play-button {
+    transform: scale(1.1);
+    background: var(--primary-hover);
+  }
+
+  @media (max-width: 768px) {
+    h2 { font-size: 2rem; }
+    .play-button { width: 60px; height: 60px; }
+    .play-button svg { width: 30px; height: 30px; }
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const trigger = document.querySelector('.video-facade-trigger');
+    if (trigger) {
+      trigger.addEventListener('click', () => {
+        const videoId = trigger.getAttribute('data-video-id');
+        const container = document.getElementById('video-facade');
+        
+        container.innerHTML = `
+          <iframe 
+            width="100%" 
+            height="100%" 
+            src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+          ></iframe>
+        `;
+      });
+    }
+  });
+</script>

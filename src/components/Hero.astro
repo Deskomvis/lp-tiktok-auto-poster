@@ -1,7 +1,6 @@
 ---
 // Hero.astro
 import { Image } from 'astro:assets';
-import heroImage from '../../public/hero-image.png';
 ---
 <section class="hero-section">
   <div class="container hero-container">
@@ -36,7 +35,7 @@ import heroImage from '../../public/hero-image.png';
     </div>
     <div class="hero-image">
       <Image 
-        src={heroImage} 
+        src="/hero-image.png" 
         alt="TikTok Auto Poster Dashboard" 
         class="hero-mockup-img float-anim" 
         width={600} 
