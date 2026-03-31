@@ -19,24 +19,11 @@
         <div class="limited-banner">
           ⏰ HARGA PROMO TERBATAS — Bisa Naik Kapan Saja!
         </div>
-        <!-- USER REQUESTED IFRAME START -->
-        <iframe id="myiframe" width="100%" frameborder="0" src="https://prodig.deskomvis.com/checkout-tiktok-autopost" title="Formulir Checkout TikTok Auto Poster Terenkripsi"></iframe>
-        <script>
-          const iframe=document.getElementById('myiframe')
-          function resizeIframe(height){iframe.style.height=height+'px'}
-          function isUrl(string){try{new URL(string); return true}catch(_){return false}}
-          function isJSONObject(string){try{const parsed=JSON.parse(string); return typeof parsed==='object'&&parsed!==null}catch(e){return false}}
-          function isIframeSameOrigin(){try{const doc=iframe.contentDocument||iframe.contentWindow.document; return true}catch(e){return false}}
-          window.addEventListener('message',function(e){if(e.origin==='https://prodig.deskomvis.com'){if(isUrl(e.data)){location.href=e.data}
-          if(isJSONObject(e.data)&&!isIframeSameOrigin()){const message=JSON.parse(e.data)
-          if(message.type==='resize'){resizeIframe(message.height)}}}},false)
-          document.addEventListener('DOMContentLoaded', function () {var observer = new IntersectionObserver(function (entries) {
-          entries.forEach((entry) => {if (entry.isIntersecting) {
-          iframe.src = iframe.src
-          observer.disconnect()}})})
-          observer.observe(iframe)})
-        </script>
-        <!-- USER REQUESTED IFRAME END -->
+        <!-- CTA BUTTON (Replaced Iframe) -->
+        <a href="https://prodig.deskomvis.com/checkout-tiktok-autopost" class="btn btn-danger btn-pulse-red" aria-label="Amankan harga promo software sebelum masa diskon berakhir">
+          🛒 AMANKAN SEKARANG SEBELUM HARGA NAIK!
+        </a>
+        <!-- CTA BUTTON END -->
       </div>
     </div>
 
@@ -98,7 +85,41 @@
     border-radius: 24px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.5);
-    min-height: 600px;
+    text-align: center;
+  }
+
+  .btn-danger {
+    background: linear-gradient(90deg, #dc2626 0%, #b91c1c 100%);
+    color: white;
+    padding: 20px 40px;
+    font-size: 1.3rem;
+    font-weight: 800;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    margin-top: 10px;
+    transition: all 0.3s;
+    box-shadow: 0 10px 25px -5px rgba(220, 38, 38, 0.5);
+  }
+
+  .btn-danger:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 30px -5px rgba(220, 38, 38, 0.6);
+  }
+
+  .btn-pulse-red {
+    animation: pulseRed 2s infinite;
+  }
+
+  @keyframes pulseRed {
+    0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(220, 38, 38, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
   }
 
   .guarantee-badges {
