@@ -27,17 +27,17 @@ const { title, description = "Tingkatkan views & otomatisasi konten TikTok-mu. S
 
 		<style is:inline>
 			:root {
-				--primary: #4f46e5;
-				--primary-hover: #4338ca;
+				--primary: #4338ca; /* Slightly darker indigo for better contrast (4.5:1+) */
+				--primary-hover: #3730a3;
 				--secondary: #f3f4f6;
 				--bg-color: #f8fafc;
 				--text-main: #0f172a;
-				--text-muted: #64748b;
+				--text-muted: #475569; /* Darkened from #64748b to meet 4.5:1 contrast ratio */
 				--white: #ffffff;
 				--dark-violet: #1e1b4b;
 				--dark-card: #2e2c3a;
-				--accent-red: #ef4444;
-				--accent-gold: #f59e0b;
+				--accent-red: #dc2626; /* Darkened for better readability */
+				--accent-gold: #b45309; /* Darkened gold */
 				--font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 				--max-width: 1100px;
 				--card-radius: 16px;
@@ -49,22 +49,75 @@ const { title, description = "Tingkatkan views & otomatisasi konten TikTok-mu. S
 			* { box-sizing: border-box; margin: 0; padding: 0; }
 			html { scroll-behavior: smooth; font-family: var(--font-family); background-color: var(--bg-color); color: var(--text-main); line-height: 1.5; }
 			body { min-height: 100vh; overflow-x: hidden; background: linear-gradient(180deg, #f0f4ff 0%, #fefefe 10%, #f6f8ff 50%, #f8fafc 100%); }
-			a { text-decoration: none; color: inherit; }
+			
+			/* Skip to content link */
+			.skip-link {
+				position: absolute;
+				top: -40px;
+				left: 0;
+				background: var(--primary);
+				color: white;
+				padding: 8px;
+				z-index: 1000;
+				transition: top 0.3s;
+			}
+			.skip-link:focus {
+				top: 0;
+			}
+
+			/* Modern Focus State */
+			:focus-visible {
+				outline: 3px solid var(--primary);
+				outline-offset: 2px;
+			}
+
+			a { text-decoration: none; color: inherit; border-radius: 4px; }
 			img { max-width: 100%; height: auto; display: block; }
 			.container { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 20px; }
 			h1, h2, h3, h4 { color: var(--dark-violet); font-weight: 800; line-height: 1.2; }
 			.text-center { text-align: center; }
 			.text-primary { color: var(--primary); }
 			.text-muted { color: var(--text-muted); }
-			.btn { display: inline-flex; align-items: center; justify-content: center; padding: 16px 32px; font-weight: 700; font-size: 1.1rem; border-radius: var(--btn-radius); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; border: none; box-shadow: var(--shadow-md); font-family: var(--font-family); }
+			
+			.btn { 
+				display: inline-flex; 
+				align-items: center; 
+				justify-content: center; 
+				padding: 16px 32px; 
+				font-weight: 700; 
+				font-size: 1.1rem; 
+				border-radius: var(--btn-radius); 
+				transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+				cursor: pointer; 
+				border: none; 
+				box-shadow: var(--shadow-md); 
+				font-family: var(--font-family); 
+			}
 			.btn-primary { background: linear-gradient(90deg, #6366f1 0%, #4338ca 100%); color: var(--white); text-transform: uppercase; letter-spacing: 0.5px; }
 			.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 20px 25px -5px rgba(67, 56, 202, 0.4), 0 8px 10px -6px rgba(67, 56, 202, 0.3); }
+			
+			/* Pulsing animation */
 			.btn-pulse { animation: pulse 2s infinite; }
 			@keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.7); } 70% { transform: scale(1.03); box-shadow: 0 0 0 10px rgba(79, 70, 229, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); } }
 			@keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+			
+			/* prefers-reduced-motion support */
+			@media (prefers-reduced-motion: reduce) {
+				*, ::before, ::after {
+					animation-delay: -1ms !important;
+					animation-duration: 1ms !important;
+					animation-iteration-count: 1 !important;
+					background-attachment: initial !important;
+					scroll-behavior: auto !important;
+					transition-duration: 0s !important;
+					transition-delay: 0s !important;
+				}
+			}
+
 			.section { padding: 80px 0; }
 			.card { background: var(--white); border-radius: var(--card-radius); padding: 30px; box-shadow: var(--shadow-md); transition: transform 0.3s ease; border: 1px solid rgba(0,0,0,0.05); }
 			.card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+			
 			@media (max-width: 768px) { 
 				.section { padding: 50px 0; } 
 				h1 { font-size: 2.2rem; } 
@@ -91,6 +144,8 @@ const { title, description = "Tingkatkan views & otomatisasi konten TikTok-mu. S
 
 	</head>
 	<body>
+		<a href="#main-content" class="skip-link">Lanjut ke Konten Utama</a>
 		<slot />
 	</body>
 </html>
+
