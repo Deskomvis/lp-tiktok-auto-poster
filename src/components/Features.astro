@@ -4,37 +4,44 @@ const features = [
   {
     icon: "🛒",
     title: "Auto Keranjang Kuning",
-    desc: "Otomatis menautkan produk / keranjang kuning di setiap video tanpa harus pilih manual satu per satu."
+    desc: "Setiap video yang diupload langsung tertautkan produk TikTok Shop kamu secara otomatis. Tidak perlu lagi pilih satu per satu.",
+    highlight: "Hemat 3–5 jam/hari"
   },
   {
     icon: "🤖",
-    title: "Upload Puluhan Akun",
-    desc: "Multi-akun bukan masalah. Software otomatis mengeksekusi upload ke berbagai profil berbeda secara bergantian."
+    title: "Upload 30 Akun Sekaligus",
+    desc: "Kelola puluhan akun TikTok dari satu dashboard. Software otomatis rotasi akun, upload, dan set deskripsi tanpa intervensi manual.",
+    highlight: "Skala 30x lebih cepat"
   },
   {
     icon: "⏱️",
-    title: "Kerja Terasa Ringan",
-    desc: "Buang cara lama yang memakan waktu berjam-jam. Cukup siapkan bahan, klik mulai, dan biarkan software bekerja."
+    title: "Kerja sambil Tidur",
+    desc: "Tinggal jadwalkan video, tutup laptop, tidur. Saat kamu bangun, ratusan video sudah tersebar di puluhan akun TikTok kamu.",
+    highlight: "Autopilot 24/7"
   },
   {
     icon: "🛡️",
-    title: "Aman dari Shadowban",
-    desc: "Menggunakan metode browser anti-detect sehingga perilaku sistem tetap aman dan tidak terdeteksi sebagai spammer."
+    title: "100% Anti Shadowban",
+    desc: "Teknologi browser anti-fingerprint & RPA enterprise mensimulasikan perilaku manusia nyata. TikTok tidak bisa membedakannya.",
+    highlight: "Aman & terpercaya"
   }
 ];
 ---
-<section class="section features-section">
+<section class="section features-section" aria-labelledby="features-heading">
   <div class="container text-center">
-    <div class="section-badge">KENAPA BUTUH TOOLS INI?</div>
-    <h2>Yang TIDAK Pakai Ini Akan <span class="text-primary highlight">Tertinggal</span></h2>
-    <p class="subtitle text-muted">Rahasia raksasa kreator & affiliator memiliki puluhan akun tanpa harus merekrut banyak admin upload khusus.</p>
+    <div class="section-badge" aria-label="Keunggulan utama software">KENAPA 2.000+ ORANG SUDAH PAKAI INI?</div>
+    <h2 id="features-heading">Yang <span class="highlight">Tidak Pakai Ini</span> Akan<br/>Tertinggal Jauh Sekali</h2>
+    <p class="subtitle text-muted">Ini bukan sekadar tools biasa. Ini adalah sistem otomatisasi TikTok paling lengkap yang pernah ada di Indonesia.</p>
     
-    <div class="grid-4">
+    <div class="grid-4" role="list">
       {features.map((item) => (
-        <div class="card feature-card">
+        <div class="card feature-card" role="listitem">
           <div class="icon-circle" aria-hidden="true">{item.icon}</div>
           <h3>{item.title}</h3>
           <p class="text-muted">{item.desc}</p>
+          <div class="feature-highlight" aria-label={`Manfaat: ${item.highlight}`}>
+            <span aria-hidden="true">✅</span> {item.highlight}
+          </div>
         </div>
       ))}
     </div>
@@ -53,7 +60,7 @@ const features = [
     background: rgba(79, 70, 229, 0.1);
     padding: 6px 16px;
     border-radius: 50px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
     margin-bottom: 16px;
     letter-spacing: 1px;
@@ -62,13 +69,14 @@ const features = [
   h2 {
     font-size: 2.5rem;
     margin-bottom: 20px;
+    line-height: 1.25;
   }
 
   .subtitle {
     max-width: 600px;
     margin: 0 auto 50px;
-    font-size: 1.1rem;
-    line-height: 1.6;
+    font-size: 1.05rem;
+    line-height: 1.7;
   }
 
   .highlight {
@@ -87,10 +95,11 @@ const features = [
   .feature-card {
     display: flex;
     flex-direction: column;
-    padding: 40px 30px;
+    padding: 36px 28px;
     text-align: center;
     align-items: center;
     background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    gap: 0;
   }
 
   .icon-circle {
@@ -104,16 +113,33 @@ const features = [
     font-size: 24px;
     margin-bottom: 20px;
     box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.1);
+    flex-shrink: 0;
   }
 
   h3 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-bottom: 12px;
   }
 
   .feature-card p {
-    font-size: 0.95rem;
-    line-height: 1.6;
+    font-size: 0.93rem;
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  .feature-highlight {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 18px;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    color: #065f46;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 30px;
+    white-space: nowrap;
   }
 
   @media (max-width: 1024px) {

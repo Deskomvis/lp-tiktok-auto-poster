@@ -2,10 +2,10 @@
 // FomoBanner.astro - Urgency / Scarcity strip
 ---
 
-<div class="fomo-strip">
+<div class="fomo-strip" role="banner" aria-label="Peringatan harga promo terbatas">
   <div class="container fomo-inner">
-    <span class="fomo-pulse"></span>
-    <p>⚡ <strong>PERINGATAN:</strong> Harga bisa naik kapan saja tanpa pemberitahuan. <span class="fomo-highlight">Amankan aksesmu SEKARANG</span> sebelum terlambat.</p>
+    <span class="fomo-pulse" aria-hidden="true"></span>
+    <p>⚡ <strong>PERINGATAN:</strong> Harga <span class="fomo-highlight">Rp 374.250</span> berlaku cuma untuk <strong>48 jam ke depan</strong> — gunakan kode <span class="fomo-code">DISKON25%</span> sebelum terlambat.</p>
   </div>
 </div>
 
@@ -65,13 +65,23 @@
   }
 
   .fomo-highlight {
-    background: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.25);
     padding: 2px 8px;
     border-radius: 4px;
     font-weight: 800;
   }
 
+  .fomo-code {
+    background: rgba(255,255,255,0.2);
+    border: 1px dashed rgba(255,255,255,0.6);
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-weight: 800;
+    font-family: monospace;
+    letter-spacing: 0.5px;
+  }
+
   @media (max-width: 768px) {
-    .fomo-strip p { font-size: 0.85rem; }
+    .fomo-strip p { font-size: 0.82rem; }
   }
 </style>

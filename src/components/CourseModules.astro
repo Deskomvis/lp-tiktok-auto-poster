@@ -4,60 +4,64 @@ const modules = [
   {
     num: "1",
     title: "Persiapan & Instalasi Sistem",
+    subtitle: "Mulai dari Nol, Jalan Sepenuhnya",
     lessons: [
-      "Intro",
-      "Download Browser Anti Fingerprint"
+      "Intro & gambaran sistem lengkap",
+      "Download & install browser anti-fingerprint",
+      "Setup pertama kali yang benar (anti error)"
     ]
   },
   {
     num: "2",
-    title: "Setup Keamanan Akun",
-    subtitle: "Anti-Detect Browser & Proxy",
+    title: "Keamanan Akun TikTok",
+    subtitle: "Anti-Detect Browser & Teknik Proxy",
     lessons: [
-      "Panduan Beli Proxy",
-      "Setting Anti-Detect Browser",
-      "Tambah Profile di Anti-Detect Browser",
-      "Login Akun TikTok di Profile"
+      "Cara beli proxy yang aman & murah",
+      "Konfigurasi anti-detect browser step-by-step",
+      "Tambahkan & kelola puluhan profile sekaligus",
+      "Login akun TikTok ke tiap profile tanpa terdeteksi"
     ]
   },
   {
     num: "3",
-    title: "Konfigurasi Tool Automasi",
-    subtitle: "TikTok AutoPoster",
+    title: "Konfigurasi Software Otomasi",
+    subtitle: "Hubungkan Semuanya dalam 1 Klik",
     lessons: [
-      "Menghubungkan Anti-Detect Browser ke Software",
-      "Export/Import Profile"
+      "Menghubungkan browser ke TikTok AutoPoster",
+      "Export & import profile antar device",
+      "Setting keranjang kuning & auto-link produk"
     ]
   },
   {
     num: "4",
-    title: "Operasional Upload Massal",
-    subtitle: "Bulk Upload Eksekusi",
+    title: "Eksekusi Upload Massal",
+    subtitle: "Dari 1 Video ke 30 Akun Sekaligus",
     lessons: [
-      "Intro Software",
-      "Bulk Upload Setting",
-      "Start Upload"
+      "Panduan lengkap dashboard software",
+      "Konfigurasi bulk upload & jadwal otomatis",
+      "Tekan Start — biarkan software bekerja sendiri",
+      "Monitoring hasil & troubleshooting umum"
     ]
   }
 ];
 ---
 
-<section class="section modules-section">
+<section class="section modules-section" aria-labelledby="modules-heading">
   <div class="container text-center">
-    <div class="section-badge">MATERI TERLENGKAP</div>
-    <h2>Apa Saja yang Akan <span class="text-primary highlight">Kamu Pelajari?</span></h2>
-    <p class="subtitle text-muted">Tutorial step-by-step dari nol hingga kamu mahir melakukan upload ratusan video ke banyak akun sekaligus secara aman.</p>
+    <div class="section-badge" aria-hidden="true">ISI MATERI LENGKAP</div>
+    <h2 id="modules-heading">Apa yang Akan Kamu <span class="text-primary highlight">Kuasai Setelah Beli?</span></h2>
+    <p class="subtitle text-muted">Tutorial step-by-step dari nol hingga mahir. Dari yang belum pernah pakai software otomasi sekalipun, bisa langsung jalan dalam 1 hari.</p>
     
-    <div class="modules-grid">
+    <div class="modules-grid" role="list" aria-label="Daftar modul e-course">
       {modules.map((mod) => (
-        <div class="module-card">
+        <div class="module-card" role="listitem">
           <div class="mod-header">
-            <div class="mod-num">Modul {mod.num}</div>
+            <div class="mod-num" aria-label={`Modul ${mod.num}`}>MODUL {mod.num}</div>
             <h3 class="mod-title">{mod.title}</h3>
             {mod.subtitle && <p class="mod-subtitle">{mod.subtitle}</p>}
           </div>
           <div class="mod-body">
-            <ul class="lesson-list">
+            <ul class="lesson-list" aria-label={`Pelajaran dalam modul ${mod.num}`}>
               {mod.lessons.map(lesson => (
                 <li>
                   <span class="check-icon" aria-hidden="true">▶</span>
@@ -68,6 +72,11 @@ const modules = [
           </div>
         </div>
       ))}
+    </div>
+
+    <div class="bonus-bar" role="note" aria-label="Bonus tambahan yang didapat">
+      <span aria-hidden="true">🎁</span>
+      <strong>BONUS:</strong> Akses grup eksklusif untuk update terbaru, Q&A langsung dengan mentor, dan tips rahasia tambahan dari komunitas.
     </div>
   </div>
 </section>
@@ -85,7 +94,7 @@ const modules = [
     background: rgba(79, 70, 229, 0.1);
     padding: 6px 16px;
     border-radius: 50px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
     margin-bottom: 16px;
     letter-spacing: 1px;
@@ -94,13 +103,14 @@ const modules = [
   h2 {
     font-size: 2.5rem;
     margin-bottom: 20px;
+    line-height: 1.25;
   }
 
   .subtitle {
     max-width: 600px;
     margin: 0 auto 50px;
-    font-size: 1.1rem;
-    line-height: 1.6;
+    font-size: 1.05rem;
+    line-height: 1.7;
   }
 
   .highlight {
@@ -112,7 +122,7 @@ const modules = [
   .modules-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+    gap: 28px;
     max-width: 1000px;
     margin: 0 auto;
     text-align: left;
@@ -131,17 +141,17 @@ const modules = [
 
   .module-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 30px -10px rgba(79, 70, 229, 0.12);
   }
 
   .mod-header {
     background: linear-gradient(135deg, var(--dark-violet) 0%, #312e81 100%);
     color: white;
-    padding: 30px 25px;
+    padding: 28px 24px;
   }
 
   .mod-num {
-    font-size: 0.85rem;
+    font-size: 0.72rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -151,20 +161,20 @@ const modules = [
 
   .mod-title {
     color: white;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     margin: 0;
     line-height: 1.3;
   }
 
   .mod-subtitle {
-    margin-top: 5px;
-    font-size: 0.95rem;
-    color: #e0e7ff;
+    margin-top: 6px;
+    font-size: 0.88rem;
+    color: #c7d2fe;
     opacity: 0.9;
   }
 
   .mod-body {
-    padding: 25px;
+    padding: 24px;
     flex-grow: 1;
   }
 
@@ -175,13 +185,14 @@ const modules = [
   }
 
   .lesson-list li {
-    padding: 12px 0;
+    padding: 11px 0;
     border-bottom: 1px dashed #e2e8f0;
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    font-size: 0.95rem;
+    font-size: 0.93rem;
     color: var(--text-main);
+    line-height: 1.55;
   }
 
   .lesson-list li:last-child {
@@ -195,13 +206,32 @@ const modules = [
 
   .check-icon {
     color: var(--primary);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     margin-top: 4px;
     flex-shrink: 0;
+  }
+
+  .bonus-bar {
+    margin: 40px auto 0;
+    max-width: 800px;
+    background: linear-gradient(90deg, rgba(79, 70, 229, 0.07) 0%, rgba(139, 92, 246, 0.07) 100%);
+    border: 1px solid rgba(79, 70, 229, 0.2);
+    padding: 20px 28px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 0.97rem;
+    color: var(--dark-violet);
+    text-align: center;
+    flex-wrap: wrap;
+    line-height: 1.6;
   }
 
   @media (max-width: 768px) {
     .modules-grid { grid-template-columns: 1fr; }
     h2 { font-size: 2rem; }
+    .bonus-bar { font-size: 0.9rem; padding: 16px 20px; }
   }
 </style>

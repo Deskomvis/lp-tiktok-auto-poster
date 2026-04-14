@@ -1,43 +1,47 @@
 ---
 // Comparison.astro
 const manual = [
-  "Login-logout pindah akun secara manual.",
-  "Upload dan ketik konten satu-persatu per video.",
-  "Waktu habis buat cari & tautkan keranjang kuning produk.",
-  "Risiko gampang kena shadowban karena ketahuan spamming."
+  "Login & logout berpindah antar akun secara manual — buang waktu 2–3 jam sehari.",
+  "Upload satu per satu, ketik ulang caption yang sama berkali-kali.",
+  "Harus buka TikTok Shop manual untuk tautkan setiap keranjang kuning.",
+  "Beban kerja tak sebanding hasilnya — burnout sebelum untung.",
 ];
 
 const auto = [
-  "Rotasi dan upload puluhan akun dalam hitungan menit.",
-  "Otomatis mengekstrak detail dari folder direktori.",
-  "Pintar menautkan link keranjang kuning secara instan.",
-  "Super aman menggunakan browser teknologi anti-detecting."
+  "Upload ke 30 akun sekaligus dalam hitungan menit dari 1 dashboard.",
+  "Caption & hashtag otomatis terisi dari file — sekali setting, jalan terus.",
+  "Keranjang kuning tautkan otomatis ke setiap video tanpa klik manual.",
+  "Semakin banyak akun, semakin besar penghasilan — skalabilitas tanpa batas.",
 ];
 ---
-<section class="section comparison-section">
+<section class="section comparison-section" aria-labelledby="comparison-heading">
   <div class="container text-center">
-    <h2>Cara Manual vs TikTok <span class="highlight">Auto Post</span></h2>
-    <p class="subtitle text-muted">Pilihan cerdas kreator masa depan.</p>
+    <div class="section-badge" aria-hidden="true">PERBANDINGAN NYATA</div>
+    <h2 id="comparison-heading">Masih <span class="highlight-red">Cara Lama</span> atau Sudah<br/><span class="highlight">Pakai Auto Post?</span></h2>
+    <p class="subtitle text-muted">Lihat perbedaan mencolok yang dialami setiap hari antara yang masih manual vs yang sudah otomatis:</p>
     
-    <div class="comparison-grid">
-      <div class="comp-box manual">
+    <div class="comparison-grid" role="list" aria-label="Perbandingan cara manual vs auto post">
+      <div class="comp-box manual" role="listitem" aria-label="Kelemahan cara manual">
         <div class="box-header">
-          <h3>❌ CARA MANUAL</h3>
+          <span class="header-icon" aria-hidden="true">❌</span>
+          <h3>Cara Manual — Melelahkan</h3>
         </div>
         <ul class="comp-list">
           {manual.map(text => (
             <li>
-              <span class="icon" aria-hidden="true">😭</span>
+              <span class="icon" aria-hidden="true">😩</span>
               <span>{text}</span>
             </li>
           ))}
         </ul>
+        <div class="box-verdict verdict-bad">Hasilnya: kerja keras, pendapatan stagnan.</div>
       </div>
 
-      <div class="comp-box auto">
-        <div class="badge-best">PILIHAN TEPAT</div>
+      <div class="comp-box auto" role="listitem" aria-label="Keunggulan TikTok Auto Post">
+        <div class="badge-best" aria-label="Rekomendasi pilihan terbaik">PILIHAN CERDAS</div>
         <div class="box-header">
-          <h3>✅ AUTO POST</h3>
+          <span class="header-icon" aria-hidden="true">✅</span>
+          <h3>TikTok Auto Post — Autopilot</h3>
         </div>
         <ul class="comp-list">
           {auto.map(text => (
@@ -47,6 +51,7 @@ const auto = [
             </li>
           ))}
         </ul>
+        <div class="box-verdict verdict-good">Hasilnya: kerja 1x, pendapatan terus mengalir.</div>
       </div>
     </div>
   </div>
@@ -58,22 +63,41 @@ const auto = [
     padding: 80px 0;
   }
 
-  h2 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+  .section-badge {
+    display: inline-block;
+    color: var(--primary);
+    background: rgba(79, 70, 229, 0.1);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
   }
 
-  .subtitle { margin-bottom: 50px; font-size: 1.1rem; }
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    line-height: 1.25;
+  }
+
+  .subtitle { margin-bottom: 50px; font-size: 1.05rem; line-height: 1.7; }
   
   .highlight {
-    color: var(--primary);
+    background: linear-gradient(90deg, var(--primary) 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .highlight-red {
+    color: #dc2626;
   }
 
   .comparison-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
-    max-width: 900px;
+    max-width: 950px;
     margin: 0 auto;
   }
 
@@ -83,31 +107,46 @@ const auto = [
     overflow: hidden;
     position: relative;
     box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
   }
 
   .box-header {
-    padding: 20px;
+    padding: 24px 30px;
     background: #f1f5f9;
     border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .header-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
   }
 
   .box-header h3 {
     margin: 0;
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     color: var(--text-main);
+    text-align: left;
   }
 
   .comp-list {
     list-style: none;
-    padding: 30px;
+    padding: 28px 28px 16px;
     text-align: left;
+    flex: 1;
   }
 
   .comp-list li {
     display: flex;
-    gap: 16px;
-    margin-bottom: 24px;
+    gap: 14px;
+    margin-bottom: 20px;
     align-items: flex-start;
+    font-size: 0.93rem;
+    color: var(--text-main);
+    line-height: 1.6;
   }
 
   .comp-list li:last-child {
@@ -115,8 +154,30 @@ const auto = [
   }
 
   .icon {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .box-verdict {
+    margin: 0 28px 28px;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  .verdict-bad {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid rgba(220, 38, 38, 0.2);
+  }
+
+  .verdict-good {
+    background: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
   }
 
   /* Specifics for Auto */
@@ -128,8 +189,8 @@ const auto = [
   }
 
   .comp-box.auto .box-header {
-    background: rgba(79, 70, 229, 0.1);
-    border-color: rgba(79, 70, 229, 0.2);
+    background: rgba(79, 70, 229, 0.08);
+    border-color: rgba(79, 70, 229, 0.15);
   }
 
   .comp-box.auto .box-header h3 {
@@ -142,14 +203,16 @@ const auto = [
     right: 0;
     background: var(--primary);
     color: white;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 800;
-    padding: 6px 16px;
+    padding: 7px 18px;
     border-bottom-left-radius: 12px;
+    letter-spacing: 0.5px;
   }
 
   @media (max-width: 768px) {
     .comparison-grid { grid-template-columns: 1fr; }
     .comp-box.auto { transform: none; margin-top: 20px; }
+    h2 { font-size: 2rem; }
   }
 </style>

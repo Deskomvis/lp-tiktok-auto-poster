@@ -5,23 +5,31 @@ import { Image } from 'astro:assets';
 <section class="hero-section">
   <div class="container hero-container">
     <div class="hero-content">
-      <div class="badge">🔥 E-COURSE & TOOLS UPLOAD TIKTOK MASAL</div>
+      <div class="badge" aria-label="E-Course dan Software Upload TikTok Massal">
+        <span aria-hidden="true">🔥</span> SOFTWARE RESMI · DIPERCAYA 2.000+ AFFILIATOR
+      </div>
       <h1>
-        Kompetitor Kamu <br/>
-        <span class="text-primary italic-text">Sudah Pakai Ini.</span> <br/>
-        Kamu Masih <br/>
-        Manual?
+        Upload ke <span class="text-highlight">30 Akun TikTok</span><br/>
+        Dalam 5 Menit —<br/>
+        <span class="text-primary italic-text">Sambil Kamu Tidur.</span>
       </h1>
       <p class="hero-desc">
-        Punya banyak akun TikTok tapi capek harus upload video satu per satu secara manual? 
-        Dalam spesialis ekosistem ini, kamu akan diajarkan cara <strong>upload masal</strong> ke puluhan akun dengan sekali klik, 
-        lengkap dengan fitur menautkan <strong>Keranjang Kuning</strong> otomatis!
+        Sementara kamu masih upload <strong>satu per satu</strong>, kompetitor kamu sudah pakai software ini untuk
+        auto-upload ke puluhan akun, auto-tautkan <strong>Keranjang Kuning</strong>, dan auto-hasilkan komisi —
+        <strong>tanpa sentuh keyboard sama sekali.</strong>
       </p>
+      <div class="trust-row" aria-label="Bukti kepercayaan pengguna">
+        <div class="trust-item"><span class="trust-num" aria-hidden="true">2.000+</span><span class="trust-label">Pengguna Aktif</span></div>
+        <div class="trust-divider" aria-hidden="true"></div>
+        <div class="trust-item"><span class="trust-num" aria-hidden="true">30</span><span class="trust-label">Akun Sekaligus</span></div>
+        <div class="trust-divider" aria-hidden="true"></div>
+        <div class="trust-item"><span class="trust-num" aria-hidden="true">5 Menit</span><span class="trust-label">Setup Awal</span></div>
+      </div>
       <div class="cta-wrapper">
-        <a href="https://prodig.deskomvis.com/checkout-tiktok-autopost" class="btn btn-primary btn-pulse" aria-label="Akses software upload TikTok otomatis sekarang">
-          🚀 SAYA MAU OTOMATIS SEKARANG!
+        <a href="https://prodig.deskomvis.com/checkout-tiktok-autopost" class="btn btn-primary btn-pulse" aria-label="Akses software upload TikTok otomatis sekarang dengan harga promo">
+          <span aria-hidden="true">🚀</span> OTOMATISKAN TIKTOK-KU SEKARANG
         </a>
-        <p class="cta-note">🔥 Diskon Spesial & Terbatas! Jangan Sampai Kehabisan</p>
+        <p class="cta-note"><span aria-hidden="true">🔒</span> Sekali bayar · Akses selamanya · Harga promo berakhir segera</p>
         <div class="live-counter" aria-hidden="true">
           <span class="live-dot"></span>
           <span id="live-viewers"></span> orang sedang melihat halaman ini
@@ -29,14 +37,17 @@ import { Image } from 'astro:assets';
       </div>
       <script is:inline>
         const el = document.getElementById('live-viewers');
-        if(el) el.textContent = Math.floor(Math.random() * 15) + 12;
-        setInterval(() => { if(el) el.textContent = Math.floor(Math.random() * 15) + 12; }, 8000);
+        if(el) el.textContent = Math.floor(Math.random() * 15) + 18;
+        setInterval(() => { if(el) el.textContent = Math.floor(Math.random() * 15) + 18; }, 8000);
       </script>
     </div>
     <div class="hero-image">
+      <div class="hero-badge-float" aria-hidden="true">
+        <span class="hbf-dot"></span> Live: Sedang Upload...
+      </div>
       <Image 
         src="https://tiktok-autopost.lovable.app/assets/dashboard-Bf38sSxt.webp" 
-        alt="TikTok Auto Poster Dashboard" 
+        alt="Dashboard TikTok Auto Poster menampilkan multi-akun upload berjalan otomatis" 
         class="hero-mockup-img float-anim" 
         inferSize
         loading="eager"
@@ -49,8 +60,8 @@ import { Image } from 'astro:assets';
 <style>
   .hero-section {
     padding: 100px 0 60px;
-    background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at bottom right, rgba(99, 102, 241, 0.05) 0%, transparent 40%);
+    background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at bottom right, rgba(99, 102, 241, 0.07) 0%, transparent 50%);
   }
 
   .hero-container {
@@ -61,20 +72,42 @@ import { Image } from 'astro:assets';
   }
 
   .badge {
-    display: inline-block;
-    padding: 6px 16px;
-    background: rgba(239, 68, 68, 0.1);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 18px;
+    background: rgba(220, 38, 38, 0.1);
     color: var(--accent-red);
+    border: 1px solid rgba(220, 38, 38, 0.2);
     border-radius: 20px;
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     margin-bottom: 24px;
+    letter-spacing: 0.3px;
   }
 
   h1 {
     font-size: 3.5rem;
     letter-spacing: -0.02em;
     margin-bottom: 24px;
+    line-height: 1.15;
+  }
+
+  .text-highlight {
+    color: var(--dark-violet);
+    position: relative;
+  }
+
+  .text-highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, rgba(99, 102, 241, 0.4) 0%, rgba(139, 92, 246, 0.4) 100%);
+    border-radius: 100px;
+    z-index: -1;
   }
 
   .italic-text {
@@ -85,25 +118,64 @@ import { Image } from 'astro:assets';
   }
 
   .hero-desc {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     color: var(--text-muted);
-    margin-bottom: 32px;
+    margin-bottom: 28px;
     max-width: 90%;
+    line-height: 1.75;
   }
 
+  /* Trust Row */
+  .trust-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+
+  .trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .trust-num {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--dark-violet);
+    line-height: 1;
+  }
+
+  .trust-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  .trust-divider {
+    width: 1px;
+    height: 36px;
+    background: #e2e8f0;
+  }
+
+  /* CTA */
   .cta-note {
     margin-top: 12px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
 
   .live-counter {
-    margin-top: 16px;
+    margin-top: 14px;
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     color: var(--text-muted);
     font-weight: 500;
   }
@@ -122,10 +194,42 @@ import { Image } from 'astro:assets';
     50% { opacity: 0.3; }
   }
 
-  /* Mockup Styling */
+  /* Mockup */
   .hero-image {
     position: relative;
     perspective: 1000px;
+  }
+
+  .hero-badge-float {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 30px;
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #22c55e;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    z-index: 5;
+    animation: float-badge 3s ease-in-out infinite;
+  }
+
+  .hbf-dot {
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    animation: blink-dot 1s infinite;
+  }
+
+  @keyframes float-badge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
   }
 
   .hero-mockup-img {
@@ -148,10 +252,18 @@ import { Image } from 'astro:assets';
       grid-template-columns: 1fr;
       text-align: center;
     }
-    
-    h1 { font-size: 2.8rem; }
-    .hero-desc { margin: 0 auto 32px; }
-    .button-group { justify-content: center; }
+    h1 { font-size: 2.6rem; }
+    .hero-desc { margin: 0 auto 28px; }
+    .trust-row { justify-content: center; }
+    .trust-item { align-items: center; }
     .hero-mockup-img { margin-top: 40px; }
+    .cta-note { justify-content: center; }
+    .live-counter { justify-content: center; }
+    .hero-badge-float { left: 50%; transform: translateX(-50%); }
+  }
+
+  @media (max-width: 640px) {
+    h1 { font-size: 2.2rem; }
+    .trust-row { gap: 12px; }
   }
 </style>

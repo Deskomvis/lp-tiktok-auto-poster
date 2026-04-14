@@ -2,33 +2,36 @@
 // Urgency.astro - countdown / fear section before checkout
 ---
 
-<section class="urgency-section">
+<section class="urgency-section" aria-labelledby="urgency-heading">
   <div class="container text-center">
     <div class="urgency-card">
       <div class="fire-emoji" aria-hidden="true">🔥🔥🔥</div>
-      <h2>Setiap Detik yang Kamu Tunda, <br/><span class="text-red">Kompetitor Sudah Upload 10 Video Lebih!</span></h2>
+      <h2 id="urgency-heading">
+        Setiap Hari Tanpa Software Ini,<br/>
+        <span class="text-red">Kamu Kehilangan Rp 300.000+ Komisi Potensial.</span>
+      </h2>
       <p class="urgency-desc">
-        Bayangkan: Saat kamu masih bimbang, puluhan affiliator lain sudah menjalankan software ini 
-        dan <strong>menyedot komisi dari produk yang sama</strong> dengan yang kamu jual. 
-        Mereka upload ke 20+ akun sekaligus. Kamu? Masih manual. <strong>Masih satu per satu.</strong>
+        Bayangkan punya 20 akun TikTok, masing-masing upload 5 video per hari. Itu <strong>100 video per hari</strong> yang berpotensi menghasilkan komisi.
+        Sekarang, berapa video yang sanggup kamu upload secara manual? 10? 20?
+        <strong>Kompetitor kamu sudah di 100.</strong>
       </p>
-      <div class="fear-stats" aria-label="Statistik kemampuan software">
+      <div class="fear-stats" aria-label="Perbandingan kemampuan upload per hari">
         <div class="stat-item">
-          <div class="stat-num">20x</div>
-          <div class="stat-label">Lebih Cepat Upload</div>
+          <div class="stat-num stat-bad" aria-label="Upload manual per hari">10–20</div>
+          <div class="stat-label">Upload/hari (manual)</div>
         </div>
+        <div class="stat-vs" aria-hidden="true">VS</div>
         <div class="stat-item">
-          <div class="stat-num">30</div>
-          <div class="stat-label">Akun Sekaligus</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">Auto</div>
-          <div class="stat-label">Taut Produk</div>
+          <div class="stat-num stat-good" aria-label="Upload dengan software per hari">100+</div>
+          <div class="stat-label">Upload/hari (dengan software)</div>
         </div>
       </div>
       <div class="warning-box" role="alert" aria-live="polite">
-        ⚠️ <strong>Harga promo ini TIDAK akan bertahan lama.</strong> Begitu kuota habis, harga kembali ke harga normal TANPA DISKON.
+        <strong>⚠️ Peringatan:</strong> Harga promo <strong>Rp 374.250 dengan kode DISKON25%</strong> hanya berlaku untuk <strong>waktu terbatas.</strong> Setelah kuota habis, harga kembali ke Rp 499.000.
       </div>
+      <a href="https://prodig.deskomvis.com/checkout-tiktok-autopost" class="urgency-btn" aria-label="Amankan harga promo terbatas sekarang">
+        <span aria-hidden="true">🛒</span> Amankan Aksesmu Sebelum Terlambat
+      </a>
     </div>
   </div>
 </section>
@@ -36,17 +39,17 @@
 <style>
   .urgency-section {
     padding: 80px 0;
-    background: linear-gradient(180deg, #fef2f2 0%, #fff 100%);
+    background: linear-gradient(180deg, #fef2f2 0%, #fff7f7 100%);
   }
 
   .urgency-card {
-    max-width: 800px;
+    max-width: 820px;
     margin: 0 auto;
     padding: 60px 50px;
     background: white;
     border-radius: 24px;
-    box-shadow: 0 25px 50px -12px rgba(220, 38, 38, 0.15);
-    border: 2px solid rgba(239, 68, 68, 0.15);
+    box-shadow: 0 25px 50px -12px rgba(220, 38, 38, 0.12);
+    border: 2px solid rgba(239, 68, 68, 0.12);
   }
 
   .fire-emoji {
@@ -55,9 +58,9 @@
   }
 
   h2 {
-    font-size: 2.2rem;
+    font-size: 2.1rem;
     margin-bottom: 24px;
-    line-height: 1.3;
+    line-height: 1.35;
   }
 
   .text-red {
@@ -65,38 +68,54 @@
   }
 
   .urgency-desc {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     color: var(--text-muted);
-    line-height: 1.7;
-    margin-bottom: 40px;
-    max-width: 650px;
+    line-height: 1.75;
+    margin-bottom: 36px;
+    max-width: 680px;
     margin-left: auto;
     margin-right: auto;
   }
 
   .fear-stats {
     display: flex;
-    gap: 40px;
+    gap: 20px;
     justify-content: center;
+    align-items: center;
     margin-bottom: 40px;
+    flex-wrap: wrap;
   }
 
   .stat-item {
     text-align: center;
+    padding: 24px 40px;
+    border-radius: 16px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    min-width: 160px;
   }
 
   .stat-num {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #dc2626;
+    font-size: 2.8rem;
+    font-weight: 900;
     line-height: 1;
+    margin-bottom: 6px;
   }
 
+  .stat-bad { color: #dc2626; }
+  .stat-good { color: #16a34a; }
+
   .stat-label {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
-    margin-top: 6px;
     font-weight: 600;
+  }
+
+  .stat-vs {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #9ca3af;
+    flex-shrink: 0;
   }
 
   .warning-box {
@@ -104,10 +123,11 @@
     border: 1px solid #f59e0b;
     padding: 16px 24px;
     border-radius: 12px;
-    font-size: 1rem;
-    color: #92400e;
-    margin-bottom: 30px;
-    animation: shake 5s infinite;
+    font-size: 0.97rem;
+    color: #78350f;
+    margin-bottom: 32px;
+    line-height: 1.6;
+    animation: shake 6s infinite;
   }
 
   @keyframes shake {
@@ -118,9 +138,34 @@
     98% { transform: translateX(4px); }
   }
 
+  .urgency-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(90deg, #dc2626 0%, #b91c1c 100%);
+    color: white;
+    font-size: 1.15rem;
+    font-weight: 800;
+    padding: 18px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 10px 25px -5px rgba(220, 38, 38, 0.45);
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-family);
+  }
+
+  .urgency-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 30px -5px rgba(220, 38, 38, 0.55);
+  }
+
   @media (max-width: 768px) {
     .urgency-card { padding: 40px 20px; }
-    h2 { font-size: 1.8rem; }
-    .fear-stats { flex-direction: column; gap: 20px; }
+    h2 { font-size: 1.7rem; }
+    .fear-stats { flex-direction: column; gap: 16px; align-items: stretch; }
+    .stat-item { padding: 20px; }
   }
 </style>
