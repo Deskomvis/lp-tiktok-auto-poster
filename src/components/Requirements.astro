@@ -98,11 +98,17 @@ const reqs = [
   }
 
   @media (max-width: 768px) {
-    .req-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    h2 { font-size: 2rem; }
+    .requirements-section { padding: 48px 0; }
+    .req-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    h2 { font-size: 1.8rem; }
+    .subtitle { font-size: 0.95rem; margin-bottom: 32px; }
+    .req-card { padding: 20px 14px; border-radius: 12px; }
+    .req-icon { font-size: 2rem; margin-bottom: 10px; }
+    .req-card h3 { font-size: 0.95rem; }
+    .req-card p { font-size: 0.82rem; }
   }
 
   @media (max-width: 480px) {
-    .req-grid { grid-template-columns: 1fr; }
+    .req-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
   }
 </style>

@@ -146,8 +146,15 @@ const features = [
     .grid-4 { grid-template-columns: repeat(2, 1fr); }
   }
 
-  @media (max-width: 640px) {
-    .grid-4 { grid-template-columns: 1fr; }
-    h2 { font-size: 2rem; }
+  @media (max-width: 768px) {
+    .features-section { padding: 48px 0; }
+    .grid-4 { grid-template-columns: 1fr; gap: 14px; }
+    .feature-card { padding: 24px 20px; flex-direction: row; text-align: left; align-items: flex-start; gap: 16px; }
+    .icon-circle { width: 48px; height: 48px; font-size: 18px; margin-bottom: 0; flex-shrink: 0; }
+    h3 { font-size: 1.05rem; margin-bottom: 6px; }
+    .feature-card p { font-size: 0.88rem; }
+    .feature-highlight { font-size: 0.78rem; margin-top: 10px; }
+    h2 { font-size: 1.8rem; }
+    .subtitle { font-size: 0.95rem; margin-bottom: 32px; }
   }
 </style>

@@ -136,11 +136,17 @@ const roles = [
   }
 
   @media (max-width: 768px) {
-    .stats-row { grid-template-columns: repeat(2, 1fr); }
-    .role-badge { padding: 8px 16px; font-size: 0.88rem; }
-  }
-
-  @media (max-width: 480px) {
-    .stats-row { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .social-proof-section { padding: 32px 0 48px; }
+    .stats-row { 
+      grid-template-columns: repeat(2, 1fr); 
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .stat-box { padding: 18px 12px; }
+    .stat-num { font-size: 1.5rem; }
+    .stat-label { font-size: 0.75rem; }
+    .roles-wrapper { gap: 8px; }
+    .role-badge { padding: 8px 14px; font-size: 0.85rem; }
+    .sp-title { font-size: 0.9rem; }
   }
 </style>

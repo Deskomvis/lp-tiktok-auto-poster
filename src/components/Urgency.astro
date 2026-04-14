@@ -163,9 +163,21 @@
   }
 
   @media (max-width: 768px) {
-    .urgency-card { padding: 40px 20px; }
-    h2 { font-size: 1.7rem; }
-    .fear-stats { flex-direction: column; gap: 16px; align-items: stretch; }
-    .stat-item { padding: 20px; }
+    .urgency-section { padding: 48px 0; }
+    .urgency-card { padding: 36px 20px; }
+    h2 { font-size: 1.6rem; }
+    .urgency-desc { font-size: 0.95rem; margin-bottom: 28px; }
+    .fear-stats { flex-direction: row; gap: 12px; justify-content: center; }
+    .stat-item { padding: 16px 12px; min-width: 120px; }
+    .stat-num { font-size: 2rem; }
+    .stat-label { font-size: 0.78rem; }
+    .stat-vs { font-size: 1rem; }
+    .warning-box { font-size: 0.88rem; padding: 14px 16px; margin-bottom: 24px; }
+    .urgency-btn { font-size: 1rem; padding: 16px 24px; width: 100%; border-radius: 14px; }
+  }
+
+  @media (max-width: 480px) {
+    .fear-stats { flex-direction: column; gap: 10px; align-items: stretch; }
+    .stat-item { min-width: unset; }
   }
 </style>
