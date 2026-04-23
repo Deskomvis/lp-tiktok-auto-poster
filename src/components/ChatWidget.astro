@@ -342,15 +342,10 @@
   const messagesContainer = document.getElementById("chat-messages");
 
   const CONFIG = {
-    // Nomor WhatsApp admin yang menerima & membalas pesan
     PHONE_TARGET: "6285741813147",
-
-    // Supabase — untuk Realtime balasan admin
     SB_URL: "https://ldgeqjavpblkropacfab.supabase.co",
     SB_KEY: "sb_publishable_UhwCsYLxAKxPf5KgWJ6Jew_Dy8zFGE8",
     TENANT_ID: "0bc660d9-4b31-4450-9281-c158499323c6",
-
-    // Edge Function proxy — mengirim ke Roketchat dari server (bypass CORS)
     SEND_URL: "https://ldgeqjavpblkropacfab.supabase.co/functions/v1/lp-chat-send/0bc660d9-4b31-4450-9281-c158499323c6",
   };
 
@@ -383,7 +378,7 @@
     try {
       const res = await fetch(CONFIG.SEND_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json", "apikey": CONFIG.SB_KEY },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ phone: CONFIG.PHONE_TARGET, message: text }),
       });
       if (!res.ok) console.error("Send failed:", await res.text());
