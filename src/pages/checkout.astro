@@ -1,0 +1,195 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Checkout — TikTok Auto Poster">
+  <div class="checkout-page">
+    <div class="topline"></div>
+    
+    <!-- Header Minimalis -->
+    <header class="checkout-header">
+      <div class="wrap header-inner">
+        <a href="/" class="back-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Kembali
+        </a>
+        <div class="logo">TikTok<em>Auto</em>Poster</div>
+        <div class="secure-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          Secure Checkout
+        </div>
+      </div>
+    </header>
+
+    <main class="checkout-container">
+      <div class="wrap">
+        <div class="checkout-card fade vis">
+          <!-- Embed Iframe Anda -->
+          <iframe id="myiframe" width="100%" frameborder="0" src="https://prodig.deskomvis.com/checkout-tiktok-autopost"></iframe>
+        </div>
+      </div>
+    </main>
+
+    <footer class="checkout-footer">
+      <div class="wrap">
+        <p>&copy; 2026 TikTok Auto Poster · Pembayaran Terenkripsi & Aman</p>
+      </div>
+    </footer>
+  </div>
+
+  <script is:inline>
+    const iframe = document.getElementById('myiframe')
+    function resizeIframe(height) { 
+      iframe.style.height = height + 'px' 
+    }
+    function isUrl(string) { 
+      try { new URL(string); return true } catch (_) { return false } 
+    }
+    function isJSONObject(string) { 
+      try { const parsed = JSON.parse(string); return typeof parsed === 'object' && parsed !== null } catch (e) { return false } 
+    }
+    function isIframeSameOrigin() { 
+      try { const doc = iframe.contentDocument || iframe.contentWindow.document; return true } catch (e) { return false } 
+    }
+    
+    window.addEventListener('message', function(e) {
+      if (e.origin === 'https://prodig.deskomvis.com') {
+        if (isUrl(e.data)) { location.href = e.data }
+        if (isJSONObject(e.data) && !isIframeSameOrigin()) {
+          const message = JSON.parse(e.data)
+          if (message.type === 'resize') { resizeIframe(message.height) }
+        }
+      }
+    }, false)
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            iframe.src = iframe.src
+            observer.disconnect()
+          }
+        })
+      })
+      observer.observe(iframe)
+    })
+  </script>
+
+  <style>
+    .checkout-page {
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .checkout-header {
+      padding: var(--s3) 0;
+      background: rgba(8, 15, 24, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: var(--t0);
+      font-weight: 700;
+      color: var(--t-lo);
+      transition: color 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .back-link:hover {
+      color: var(--green-lt);
+    }
+
+    .secure-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: var(--t0);
+      font-weight: 800;
+      color: #34d399; /* Green for success/secure */
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: rgba(52, 211, 153, 0.1);
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(52, 211, 153, 0.2);
+    }
+
+    .checkout-container {
+      flex: 1;
+      padding: var(--s5) 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .checkout-card {
+      background: var(--bg2);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .checkout-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--green), transparent);
+    }
+
+    .checkout-footer {
+      padding: var(--s4) 0;
+      text-align: center;
+      border-top: 1px solid var(--line);
+    }
+
+    .checkout-footer p {
+      font-size: var(--t0);
+      color: var(--t-lo);
+    }
+
+    #myiframe {
+      min-height: 600px;
+      transition: height 0.3s ease;
+      display: block;
+    }
+
+    /* Mobile Adjustments */
+    @media (max-width: 768px) {
+      .checkout-container {
+        padding: var(--s3) 0;
+      }
+      .checkout-card {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+      }
+      .logo {
+        font-size: 1rem;
+      }
+      .secure-badge span {
+        display: none;
+      }
+    }
+  </style>
+</Layout>
