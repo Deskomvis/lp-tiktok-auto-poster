@@ -353,11 +353,41 @@
       "https://ldgeqjavpblkropacfab.supabase.co/functions/v1/lp-chat-send/0bc660d9-4b31-4450-9281-c158499323c6",
   };
 
-  // Session ID unik per pengunjung — dikirim ke WA admin sebagai [LP #xxxx]
-  // Admin balas dengan "#xxxx pesan" agar masuk ke widget pengunjung yang tepat
-  const sessionId = Math.random().toString(36).slice(2, 6).toUpperCase();
+  const STORAGE_KEY = "lp_chat_v1";
+
+  // Ambil atau buat session — persisten selama browser tidak clear storage
+  type ChatMessage = { text: string; sender: "bot" | "user" };
+  type ChatStore = { sessionId: string; messages: ChatMessage[] };
+
+  function loadStore(): ChatStore {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) return JSON.parse(raw);
+    } catch {}
+    return { sessionId: Math.random().toString(36).slice(2, 6).toUpperCase(), messages: [] };
+  }
+
+  function saveStore(store: ChatStore) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(store)); } catch {}
+  }
+
+  const store = loadStore();
+  const sessionId = store.sessionId;
 
   const supabase = createClient(CONFIG.SB_URL, CONFIG.SB_KEY);
+
+  // Render ulang history dari localStorage (kecuali pesan pembuka yang sudah ada di HTML)
+  if (store.messages.length > 0 && messagesContainer) {
+    // Hapus pesan pembuka default agar tidak duplikat
+    messagesContainer.innerHTML = "";
+    store.messages.forEach(({ text, sender }) => {
+      const div = document.createElement("div");
+      div.className = sender === "bot" ? "msg-bot" : "msg-user";
+      div.textContent = text;
+      messagesContainer.appendChild(div);
+    });
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
 
   trigger?.addEventListener("click", () => {
     chatWindow?.classList.toggle("open");
@@ -368,13 +398,16 @@
     chatWindow?.classList.remove("open");
   });
 
-  const addMessage = (text: string, sender: "bot" | "user") => {
+  const addMessage = (text: string, sender: "bot" | "user", persist = true) => {
     const div = document.createElement("div");
     div.className = sender === "bot" ? "msg-bot" : "msg-user";
     div.textContent = text;
     messagesContainer?.appendChild(div);
-    if (messagesContainer)
-      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    if (messagesContainer) messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    if (persist) {
+      store.messages.push({ text, sender });
+      saveStore(store);
+    }
   };
 
   const sendMessage = async () => {
@@ -402,7 +435,7 @@
   };
 
   // Realtime: hanya terima balasan admin yang cocok dengan session ini.
-  // Admin harus balas dengan prefix "#xxxx " agar diroute ke pengunjung yang tepat.
+  // Admin balas dengan "#xxxx pesan" — diparse oleh scalev-webhook.
   supabase
     .channel(`lp-chat-${sessionId}`)
     .on(
