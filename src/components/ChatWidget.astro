@@ -342,7 +342,10 @@
   const messagesContainer = document.getElementById("chat-messages");
 
   const CONFIG = {
+    // Nomor WhatsApp yang menerima & membalas chat dari LP
     PHONE_TARGET: "6285741813147",
+    // API key dari sesi/nomor Roketchat khusus LP — ganti dengan key baru setelah buat sesi baru
+    LP_TOKEN: "GANTI_DENGAN_API_KEY_BARU_DARI_ROKETCHAT",
     SB_URL: "https://ldgeqjavpblkropacfab.supabase.co",
     SB_KEY: "sb_publishable_UhwCsYLxAKxPf5KgWJ6Jew_Dy8zFGE8",
     TENANT_ID: "0bc660d9-4b31-4450-9281-c158499323c6",
@@ -379,7 +382,7 @@
       const res = await fetch(CONFIG.SEND_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone: CONFIG.PHONE_TARGET, message: text }),
+        body: JSON.stringify({ phone: CONFIG.PHONE_TARGET, message: text, token: CONFIG.LP_TOKEN }),
       });
       if (!res.ok) console.error("Send failed:", await res.text());
     } catch (err) {
