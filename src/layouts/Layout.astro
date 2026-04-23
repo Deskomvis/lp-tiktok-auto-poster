@@ -308,26 +308,9 @@ img { max-width:100%; display:block }
 .mockup {
   width:100%;
   position:relative;
-  overflow:hidden;
   border-radius:20px;
   z-index:1;
-}
-.mockup::before {
-  content: '';
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 200%; height: 200%;
-  background: conic-gradient(from 0deg, transparent 40%, var(--green-lt) 50%, transparent 60%);
-  animation: rotate-laser 4s linear infinite;
-  z-index: -2;
-}
-.mockup::after {
-  content: '';
-  position: absolute;
-  inset: 1px;
   background: var(--bg);
-  border-radius: 20px;
-  z-index: -1;
 }
 .mockup img { width:100%; height:auto; display:block; border-radius:0; position:relative; z-index:1; }
 .status-badge {
@@ -441,32 +424,15 @@ img { max-width:100%; display:block }
   background:var(--bg3);
   border-radius:16px;
   position:relative;
-  overflow:hidden;
   box-shadow:0 0 80px rgba(220,38,38,.15), 0 0 0 1px rgba(220,38,38,.08), 0 60px 120px rgba(0,0,0,.7);
   z-index:1;
-}
-.reveal-mockup-img::before {
-  content: '';
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 200%; height: 200%;
-  background: conic-gradient(from 0deg, transparent 40%, var(--green-lt) 50%, transparent 60%);
-  animation: rotate-laser 4s linear infinite;
-  z-index: -2;
-}
-.reveal-mockup-img::after {
-  content: '';
-  position: absolute;
-  inset: 1px;
-  background: var(--bg3);
-  border-radius: 16px;
-  z-index: -1;
 }
 .reveal-mockup-grid {
   position:absolute; inset:0;
   background:repeating-linear-gradient(45deg,transparent,transparent 16px,rgba(220,38,38,.02) 16px,rgba(220,38,38,.02) 32px);
   pointer-events: none;
   z-index: 0;
+  border-radius: 16px;
 }
 .reveal-mockup-img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:16px }
 .reveal-mockup-lbl {
@@ -548,8 +514,7 @@ img { max-width:100%; display:block }
   justify-content:center;
 }
 .feat-stat-box {
-  background:transparent;
-  border:none;
+  background:var(--bg2);
   border-radius:20px;
   padding:var(--s4) var(--s3);
   text-align:center;
@@ -557,25 +522,7 @@ img { max-width:100%; display:block }
   width:100%;
   max-width:380px;
   position:relative;
-  overflow:hidden;
   z-index:1;
-}
-.feat-stat-box::before {
-  content: '';
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 200%; height: 200%;
-  background: conic-gradient(from 0deg, transparent 40%, var(--green-lt) 50%, transparent 60%);
-  animation: rotate-laser 4s linear infinite;
-  z-index: -2;
-}
-.feat-stat-box::after {
-  content: '';
-  position: absolute;
-  inset: 1px;
-  background: var(--bg2);
-  border-radius: 20px;
-  z-index: -1;
 }
 .feat-big-n {
   font-size:clamp(var(--t3), 6vw, var(--t4));
@@ -1078,6 +1025,28 @@ img { max-width:100%; display:block }
 @keyframes rotate-laser {
   0% { transform: translate(-50%, -50%) rotate(0deg); }
   100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.laser-frame {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  border-radius: inherit;
+  overflow: hidden;
+  padding: 1.5px;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.laser-frame::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 250%; height: 250%;
+  background: conic-gradient(from 0deg, transparent 40%, var(--green-lt) 50%, transparent 60%);
+  animation: rotate-laser 4s linear infinite;
 }
 @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.8)} }
 @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
