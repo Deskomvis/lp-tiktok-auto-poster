@@ -1,0 +1,457 @@
+---
+/**
+ * ChatWidget.astro
+ * Premium WhatsApp-bridge Chat Widget
+ */
+---
+
+<div id="chat-widget-container" class="chat-widget-container">
+  <!-- Chat Window -->
+  <div id="chat-window" class="chat-window">
+    <div class="chat-header">
+      <div class="chat-admin-info">
+        <div class="admin-avatar">
+          <img
+            src="https://ui-avatars.com/api/?name=Support&background=dc2626&color=fff"
+            alt="Admin"
+          />
+          <span class="online-status"></span>
+        </div>
+        <div>
+          <h4>Support Sistem</h4>
+          <p>Online • Siap membantu</p>
+        </div>
+      </div>
+      <button id="close-chat" class="close-chat">&times;</button>
+    </div>
+
+    <div id="chat-messages" class="chat-messages">
+      <div class="msg-bot">
+        Halo! Ada yang bisa kami bantu mengenai sistem TikTok Auto Poster?
+      </div>
+    </div>
+
+    <div class="chat-input-area">
+      <input
+        type="text"
+        id="chat-input"
+        placeholder="Tulis pesan..."
+        autocomplete="off"
+      />
+      <button id="send-btn" class="send-btn">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><line x1="22" y1="2" x2="11" y2="13"></line><polygon
+            points="22 2 15 22 11 13 2 9 22 2"></polygon></svg
+        >
+      </button>
+    </div>
+  </div>
+
+  <!-- Floating Button -->
+  <button id="chat-trigger" class="chat-trigger">
+    <div class="pulse-ring"></div>
+    <svg
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="chat-icon"
+      ><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+      ></path></svg
+    >
+    <span class="chat-badge">1</span>
+  </button>
+</div>
+
+<style>
+  .chat-widget-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 10000;
+    font-family: "Plus Jakarta Sans", sans-serif;
+  }
+
+  /* Floating Button */
+  .chat-trigger {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--green, #dc2626);
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(220, 38, 38, 0.4);
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .chat-trigger:hover {
+    transform: scale(1.1);
+  }
+
+  .pulse-ring {
+    position: absolute;
+    inset: -4px;
+    border: 2px solid var(--green, #dc2626);
+    border-radius: 50%;
+    animation: pulse-ring 2s infinite;
+    opacity: 0;
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(1.3);
+      opacity: 0;
+    }
+  }
+
+  .chat-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #fff;
+    color: var(--green, #dc2626);
+    font-size: 10px;
+    font-weight: 800;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Chat Window */
+  .chat-window {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 360px;
+    height: 500px;
+    background: #080f18;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    transform: translateY(20px) scale(0.9);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .chat-window.open {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .chat-header {
+    background: #0c1825;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .chat-admin-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .admin-avatar {
+    position: relative;
+    width: 40px;
+    height: 40px;
+  }
+
+  .admin-avatar img {
+    width: 100%;
+    border-radius: 50%;
+  }
+
+  .online-status {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background: #22c55e;
+    border: 2px solid #0c1825;
+    border-radius: 50%;
+  }
+
+  .chat-admin-info h4 {
+    font-size: 14px;
+    margin: 0;
+    color: #fff;
+  }
+
+  .chat-admin-info p {
+    font-size: 11px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .close-chat {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+  }
+
+  .msg-bot,
+  .msg-user {
+    max-width: 85%;
+    padding: 12px 16px;
+    border-radius: 15px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .msg-bot {
+    background: #111e2e;
+    color: #fff;
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+  }
+
+  .msg-user {
+    background: var(--green, #dc2626);
+    color: #fff;
+    align-self: flex-end;
+    border-bottom-right-radius: 2px;
+  }
+
+  .chat-input-area {
+    padding: 15px 20px;
+    background: #0c1825;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .chat-input-area input {
+    flex: 1;
+    background: #050a0f;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    padding: 10px 18px;
+    color: #fff;
+    font-size: 13px;
+    outline: none;
+  }
+
+  .send-btn {
+    background: var(--green, #dc2626);
+    border: none;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .send-btn:hover {
+    background: #ef4444;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .chat-widget-container {
+      bottom: 20px;
+      right: 20px;
+    }
+    
+    .chat-trigger {
+      width: 54px;
+      height: 54px;
+    }
+    
+    .chat-window {
+      width: calc(100vw - 40px);
+      bottom: 70px;
+      height: 450px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .chat-window {
+      width: calc(100vw - 30px);
+      right: -5px; /* Adjust to stay within screen */
+      height: 70vh; /* Use viewport height for better fit */
+    }
+    
+    .msg-bot, .msg-user {
+      max-width: 90%;
+      font-size: 12px;
+    }
+  }
+</style>
+
+<script>
+  // Import Supabase dari CDN (karena proyek ini minimalis)
+  import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+  const trigger = document.getElementById("chat-trigger");
+  const chatWindow = document.getElementById("chat-window");
+  const closeBtn = document.getElementById("close-chat");
+  const input = document.getElementById("chat-input") as HTMLInputElement;
+  const sendBtn = document.getElementById("send-btn");
+  const messagesContainer = document.getElementById("chat-messages");
+
+  // CONFIGURATION
+  const CONFIG = {
+    // RocketChat API
+    TOKEN: "yhpi8qhb5s2eo93xuyz41tz7.d2a7e0c8-f40d-46cb-8650-d31c9bf8313b", // ISI DENGAN: yhpi8qhb5s2eo93xuyz41tz7.d2a7e0c8-f40d-46cb-8650-d31c9bf8313b
+    PHONE_TARGET: "6285169153878", // ISI DENGAN: Nomor WhatsApp Anda (Penerima)
+    API_URL: "https://roketchat.com/api/v1/messages/text",
+
+    // Supabase (Untuk Real-time Balasan)
+    SB_URL: "https://ldgeqjavpblkropacfab.supabase.co",
+    SB_KEY: "sb_publishable_UhwCsYLxAKxPf5KgWJ6Jew_Dy8zFGE8",
+    TENANT_ID: "0bc660d9-4b31-4450-9281-c158499323c6",
+  };
+
+  // Generate unique session for this visitor
+  const sessionId = Math.floor(1000 + Math.random() * 9000).toString();
+
+  // Initialize Supabase
+  const supabase = createClient(CONFIG.SB_URL, CONFIG.SB_KEY);
+
+  // Toggle Chat
+  trigger?.addEventListener("click", () => {
+    chatWindow?.classList.toggle("open");
+    document.querySelector(".chat-badge")?.classList.add("hidden");
+  });
+
+  closeBtn?.addEventListener("click", () => {
+    chatWindow?.classList.remove("open");
+  });
+
+  // Function to add message to UI
+  const addMessage = (text: string, sender: "bot" | "user") => {
+    // Filter out our own ID tag from display if it's a bot message
+    const cleanText = text.replace(
+      new RegExp(`\\[ID:${sessionId}\\]\\s?`, "g"),
+      "",
+    );
+
+    const div = document.createElement("div");
+    div.className = sender === "bot" ? "msg-bot" : "msg-user";
+    div.textContent = cleanText;
+    messagesContainer?.appendChild(div);
+
+    if (messagesContainer) {
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+  };
+
+  // Send Message Logic
+  const sendMessage = async () => {
+    const text = input.value.trim();
+    if (!text || !CONFIG.TOKEN) {
+      if (!CONFIG.TOKEN)
+        alert("Konfigurasi Token belum diisi di ChatWidget.astro");
+      return;
+    }
+
+    addMessage(text, "user");
+    input.value = "";
+
+    try {
+      await fetch(CONFIG.API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          token: CONFIG.TOKEN,
+        },
+        body: JSON.stringify({
+          phone: CONFIG.PHONE_TARGET,
+          // Sisipkan ID agar saat Anda balas, widget tahu ini untuk siapa
+          body: `[ID:${sessionId}] ${text}`,
+        }),
+      });
+    } catch (err) {
+      console.error("Send Error:", err);
+    }
+  };
+
+  // Real-time Listener for Replies
+  // Kita mendengarkan tabel 'messages' yang baru saja di-insert oleh webhook
+  supabase
+    .channel("any")
+    .on(
+      "postgres_changes",
+      {
+        event: "INSERT",
+        schema: "public",
+        table: "messages",
+        filter: `tenant_id=eq.${CONFIG.TENANT_ID}`,
+      },
+      (payload) => {
+        const newMsg = payload.new;
+
+        // Syarat pesan tampil di widget:
+        // 1. Pesan datang dari RocketChat (error_message mengandung 'Incoming')
+        // 2. Pesan mengandung ID sesi user ini
+        if (
+          newMsg.error_message?.includes("Incoming") &&
+          newMsg.message?.includes(`[ID:${sessionId}]`)
+        ) {
+          addMessage(newMsg.message, "bot");
+
+          // Show notification if window is closed
+          if (!chatWindow?.classList.contains("open")) {
+            document.querySelector(".chat-badge")?.classList.remove("hidden");
+          }
+        }
+      },
+    )
+    .subscribe();
+
+  sendBtn?.addEventListener("click", sendMessage);
+  input?.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") sendMessage();
+  });
+</script>

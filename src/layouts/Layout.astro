@@ -1,4 +1,6 @@
 ---
+import ChatWidget from '../components/ChatWidget.astro';
+
 interface Props {
 	title: string;
 	description?: string;
@@ -1125,5 +1127,6 @@ img { max-width:100%; display:block }
 	</head>
 	<body>
 		<slot />
+		<ChatWidget />
 	</body>
 </html>
