@@ -331,8 +331,8 @@
 </style>
 
 <script>
-  // Import Supabase dari CDN (karena proyek ini minimalis)
-  import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+  // @ts-ignore — runtime ESM import, not resolvable by tsc
+  import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.4";
 
   const trigger = document.getElementById("chat-trigger");
   const chatWindow = document.getElementById("chat-window");
@@ -341,26 +341,21 @@
   const sendBtn = document.getElementById("send-btn");
   const messagesContainer = document.getElementById("chat-messages");
 
-  // CONFIGURATION
   const CONFIG = {
-    // RocketChat API
-    TOKEN: "yhpi8qhb5s2eo93xuyz41tz7.d2a7e0c8-f40d-46cb-8650-d31c9bf8313b",
-    PHONE_TARGET: "6285741813147", // GANTI: Gunakan nomor HP pribadi Anda (HARUS BEDA dengan nomor RocketChat)
-    API_URL: "https://roketchat.com/api/v1/messages/text",
+    // Nomor WhatsApp admin yang menerima & membalas pesan
+    PHONE_TARGET: "6285741813147",
 
-    // Supabase (Untuk Real-time Balasan)
+    // Supabase — untuk Realtime balasan admin
     SB_URL: "https://ldgeqjavpblkropacfab.supabase.co",
     SB_KEY: "sb_publishable_UhwCsYLxAKxPf5KgWJ6Jew_Dy8zFGE8",
     TENANT_ID: "0bc660d9-4b31-4450-9281-c158499323c6",
+
+    // Edge Function proxy — mengirim ke Roketchat dari server (bypass CORS)
+    SEND_URL: "https://ldgeqjavpblkropacfab.supabase.co/functions/v1/lp-chat-send/0bc660d9-4b31-4450-9281-c158499323c6",
   };
 
-  // Generate unique session for this visitor
-  const sessionId = Math.floor(1000 + Math.random() * 9000).toString();
-
-  // Initialize Supabase
   const supabase = createClient(CONFIG.SB_URL, CONFIG.SB_KEY);
 
-  // Toggle Chat
   trigger?.addEventListener("click", () => {
     chatWindow?.classList.toggle("open");
     document.querySelector(".chat-badge")?.classList.add("hidden");
@@ -370,79 +365,50 @@
     chatWindow?.classList.remove("open");
   });
 
-  // Function to add message to UI
   const addMessage = (text: string, sender: "bot" | "user") => {
-    // Filter out our own ID tag from display if it's a bot message
-    const cleanText = text.replace(
-      new RegExp(`\\[ID:${sessionId}\\]\\s?`, "g"),
-      "",
-    );
-
     const div = document.createElement("div");
     div.className = sender === "bot" ? "msg-bot" : "msg-user";
-    div.textContent = cleanText;
+    div.textContent = text;
     messagesContainer?.appendChild(div);
-
-    if (messagesContainer) {
-      messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }
+    if (messagesContainer) messagesContainer.scrollTop = messagesContainer.scrollHeight;
   };
 
-  // Send Message Logic
   const sendMessage = async () => {
     const text = input.value.trim();
-    if (!text || !CONFIG.TOKEN) {
-      if (!CONFIG.TOKEN)
-        alert("Konfigurasi Token belum diisi di ChatWidget.astro");
-      return;
-    }
+    if (!text) return;
 
     addMessage(text, "user");
     input.value = "";
 
     try {
-      await fetch(CONFIG.API_URL, {
+      const res = await fetch(CONFIG.SEND_URL, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          token: CONFIG.TOKEN,
-        },
-        body: JSON.stringify({
-          phone: CONFIG.PHONE_TARGET,
-          // Sisipkan ID agar saat Anda balas, widget tahu ini untuk siapa
-          body: `[ID:${sessionId}] ${text}`,
-        }),
+        headers: { "Content-Type": "application/json", "apikey": CONFIG.SB_KEY },
+        body: JSON.stringify({ phone: CONFIG.PHONE_TARGET, message: text }),
       });
+      if (!res.ok) console.error("Send failed:", await res.text());
     } catch (err) {
       console.error("Send Error:", err);
     }
   };
 
-  // Real-time Listener for Replies
-  // Kita mendengarkan tabel 'messages' yang baru saja di-insert oleh webhook
+  // Realtime listener — subscribe ke lp_chat_incoming (RLS terbuka untuk anon).
+  // Menampilkan semua balasan dari PHONE_TARGET untuk tenant ini.
   supabase
-    .channel("any")
+    .channel("lp-chat-replies")
     .on(
       "postgres_changes",
       {
         event: "INSERT",
         schema: "public",
-        table: "messages",
+        table: "lp_chat_incoming",
         filter: `tenant_id=eq.${CONFIG.TENANT_ID}`,
       },
-      (payload) => {
-        const newMsg = payload.new;
-
-        // Syarat pesan tampil di widget:
-        // 1. Pesan datang dari RocketChat (error_message mengandung 'Incoming')
-        // 2. Pesan mengandung ID sesi user ini
-        if (
-          newMsg.error_message?.includes("Incoming") &&
-          newMsg.message?.includes(`[ID:${sessionId}]`)
-        ) {
-          addMessage(newMsg.message, "bot");
-
-          // Show notification if window is closed
+      (payload: { new: { phone: string; message: string } }) => {
+        const msg = payload.new;
+        // Hanya tampilkan balasan dari nomor admin
+        if (msg.phone === CONFIG.PHONE_TARGET) {
+          addMessage(msg.message, "bot");
           if (!chatWindow?.classList.contains("open")) {
             document.querySelector(".chat-badge")?.classList.remove("hidden");
           }
