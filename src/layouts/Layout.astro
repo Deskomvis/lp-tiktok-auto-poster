@@ -64,7 +64,7 @@ const { title, description = "Tingkatkan views & otomatisasi konten TikTok-mu. S
   --line:  rgba(255,255,255,.07);
   --line2: rgba(220,38,38,.2);
 
-  --maxw: 1140px;
+  --maxw: 1280px;
   --r: 50px; /* rounded from tweaks */
 }
 
@@ -1058,10 +1058,9 @@ img { max-width:100%; display:block }
 
 /* ─── RESPONSIVE ─── */
 @media(max-width:1024px) {
-  .feat-row-inner { grid-template-columns:1fr; gap:var(--s5) }
-  .feat-row.alt .feat-row-inner { direction:ltr }
-  .feat-visual { justify-content:flex-start }
-  .feat-stat-box { max-width:100%; margin:0 auto; }
+  .feat-row-inner { gap:var(--s6) }
+  .comp-g { max-width:100% }
+  .mods-g { max-width:100% }
 }
 @media(max-width:768px) {
   :root {
@@ -1092,6 +1091,10 @@ img { max-width:100%; display:block }
   .pricing-top { flex-direction:column; gap:var(--s2); text-align:center }
   .feat-row { padding:var(--s6) 0 }
   .feat-title { font-size:var(--t3) }
+  .feat-row-inner { grid-template-columns:1fr; gap:var(--s5) }
+  .feat-row.alt .feat-row-inner { direction:ltr }
+  .feat-visual { justify-content:center }
+  .feat-stat-box { max-width:100%; margin:0 auto; }
 }
 @media(max-width:480px) {
   :root { 
