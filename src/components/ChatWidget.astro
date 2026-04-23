@@ -345,11 +345,12 @@
     // Nomor WhatsApp yang menerima & membalas chat dari LP
     PHONE_TARGET: "6285741813147",
     // API key dari sesi/nomor Roketchat khusus LP — ganti dengan key baru setelah buat sesi baru
-    LP_TOKEN: "GANTI_DENGAN_API_KEY_BARU_DARI_ROKETCHAT",
+    LP_TOKEN: "yhpi8qhb5s2eo93xuyz41tz7.d2a7e0c8-f40d-46cb-8650-d31c9bf8313b",
     SB_URL: "https://ldgeqjavpblkropacfab.supabase.co",
     SB_KEY: "sb_publishable_UhwCsYLxAKxPf5KgWJ6Jew_Dy8zFGE8",
     TENANT_ID: "0bc660d9-4b31-4450-9281-c158499323c6",
-    SEND_URL: "https://ldgeqjavpblkropacfab.supabase.co/functions/v1/lp-chat-send/0bc660d9-4b31-4450-9281-c158499323c6",
+    SEND_URL:
+      "https://ldgeqjavpblkropacfab.supabase.co/functions/v1/lp-chat-send/0bc660d9-4b31-4450-9281-c158499323c6",
   };
 
   // Session ID unik per pengunjung — dikirim ke WA admin sebagai [LP #xxxx]
@@ -372,7 +373,8 @@
     div.className = sender === "bot" ? "msg-bot" : "msg-user";
     div.textContent = text;
     messagesContainer?.appendChild(div);
-    if (messagesContainer) messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    if (messagesContainer)
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
   };
 
   const sendMessage = async () => {
