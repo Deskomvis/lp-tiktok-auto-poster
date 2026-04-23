@@ -1,0 +1,75 @@
+# PRD DESIGN GUIDE: TikTok Auto Poster (Machine Discovery Style)
+
+## 1. CORE CONCEPT & AESTHETIC
+- **Style Name**: "Machine Discovery" / "Power of One"
+- **Vibe**: High-authority, enterprise-automation, futuristic but clean (premium tech).
+- **Theme**: Deep Dark Mode with High-Vibrancy Accents.
+
+## 2. DESIGN SYSTEM (CSS VARIABLES)
+- **Backgrounds**: 
+  - Base: `#050a0f`
+  - Layers: `#080f18`, `#0c1825`
+- **Primary Accent**: `#dc2626` (Vibrant Red)
+- **Secondary Accent**: `#ef4444` (Light Red)
+- **Typography**: 
+  - Font: 'Plus Jakarta Sans'
+  - Scale: Golden Ratio (φ=1.618)
+  - Colors: White (95%), Light Gray (75%), Dim Gray (50%)
+
+## 3. LAYOUT PATTERNS
+### Hero Section
+- Grid 2-column on desktop.
+- H1: Clamped size (3rem to 7rem). Emphasize "Power words" using italics and gradients.
+- Lead: Max-width 420px for readability.
+- Visual: "Raw" Mockup (PNG) with floating status badges.
+
+### Machine Reveal (The Hook)
+- Cinematic section with giant background text (e.g., "MACHINE") at low opacity.
+- Centered heading with em-gradient.
+- Large video/mockup with shadow-glow.
+
+### Editorial Rows (Features)
+- Alternating layout (Text-Image / Image-Text).
+- Large background numbers (01, 02) at 4% opacity.
+- Stat boxes with the "Laser Border" effect.
+
+### Vertical Timeline (How It Works)
+- Central line connecting numbered circles.
+- High contrast between step numbers and description.
+
+## 4. SIGNATURE ANIMATIONS (CSS)
+### Laser Border Frame (On-Top Frame)
+- **Mechanism**: A hidden pseudo-element rotating behind a masked frame.
+- **Implementation**:
+  ```css
+  .laser-frame {
+    position: absolute; inset: 0; z-index: 10;
+    pointer-events: none; border-radius: inherit;
+    padding: 1.5px;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+  }
+  .laser-frame::before {
+    content: ''; position: absolute;
+    top: 50%; left: 50%; width: 250%; height: 250%;
+    background: conic-gradient(from 0deg, transparent 40%, #ef4444 50%, transparent 60%);
+    animation: rotate-laser 4s linear infinite;
+  }
+  ```
+- **Micro-animations**: Use `pulse-dot` for indicators and `float` for badges.
+
+## 5. COPYWRITING STYLE
+- **Voice**: The "Expert Guide" — direct, bold, and results-focused.
+- **Structure**:
+  - Problem: Hard work, burnout, slow growth.
+  - Solution: Automation, "Mesin", scaling 30x.
+  - Urgency: "Harga promo HANYA HARI INI", "Kuota Terbatas".
+- **Keywords**: Autopilot, Autoscale, One-Click, Lifetime, No Subscription.
+
+## 6. TECHNICAL STACK
+- Framework: Astro (highly recommended for performance).
+- Styling: Vanilla CSS / Modern CSS Variables.
+- Components: Reusable section components.
+
+---
+*Created by Antigravity AI for LP Tiktok Auto Poster Revamp.*
