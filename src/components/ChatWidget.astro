@@ -352,6 +352,10 @@
     SEND_URL: "https://ldgeqjavpblkropacfab.supabase.co/functions/v1/lp-chat-send/0bc660d9-4b31-4450-9281-c158499323c6",
   };
 
+  // Session ID unik per pengunjung — dikirim ke WA admin sebagai [LP #xxxx]
+  // Admin balas dengan "#xxxx pesan" agar masuk ke widget pengunjung yang tepat
+  const sessionId = Math.random().toString(36).slice(2, 6).toUpperCase();
+
   const supabase = createClient(CONFIG.SB_URL, CONFIG.SB_KEY);
 
   trigger?.addEventListener("click", () => {
@@ -382,7 +386,12 @@
       const res = await fetch(CONFIG.SEND_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone: CONFIG.PHONE_TARGET, message: text, token: CONFIG.LP_TOKEN }),
+        body: JSON.stringify({
+          phone: CONFIG.PHONE_TARGET,
+          message: text,
+          token: CONFIG.LP_TOKEN,
+          sessionId,
+        }),
       });
       if (!res.ok) console.error("Send failed:", await res.text());
     } catch (err) {
@@ -390,26 +399,22 @@
     }
   };
 
-  // Realtime listener — subscribe ke lp_chat_incoming (RLS terbuka untuk anon).
-  // Menampilkan semua balasan dari PHONE_TARGET untuk tenant ini.
+  // Realtime: hanya terima balasan admin yang cocok dengan session ini.
+  // Admin harus balas dengan prefix "#xxxx " agar diroute ke pengunjung yang tepat.
   supabase
-    .channel("lp-chat-replies")
+    .channel(`lp-chat-${sessionId}`)
     .on(
       "postgres_changes",
       {
         event: "INSERT",
         schema: "public",
         table: "lp_chat_incoming",
-        filter: `tenant_id=eq.${CONFIG.TENANT_ID}`,
+        filter: `session_id=eq.${sessionId}`,
       },
-      (payload: { new: { phone: string; message: string } }) => {
-        const msg = payload.new;
-        // Hanya tampilkan balasan dari nomor admin
-        if (msg.phone === CONFIG.PHONE_TARGET) {
-          addMessage(msg.message, "bot");
-          if (!chatWindow?.classList.contains("open")) {
-            document.querySelector(".chat-badge")?.classList.remove("hidden");
-          }
+      (payload: { new: { message: string } }) => {
+        addMessage(payload.new.message, "bot");
+        if (!chatWindow?.classList.contains("open")) {
+          document.querySelector(".chat-badge")?.classList.remove("hidden");
         }
       },
     )
