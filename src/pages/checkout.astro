@@ -185,9 +185,21 @@ import Layout from '../layouts/Layout.astro';
         border-right: none;
       }
       .logo {
-        font-size: 1rem;
+        font-size: 0.9rem;
       }
-      .secure-badge span {
+      .secure-badge {
+        padding: 4px 8px;
+        font-size: 0.65rem;
+      }
+      .secure-badge svg {
+        display: none;
+      }
+      .back-link {
+        font-size: 0.7rem;
+      }
+    }
+    @media (max-width: 360px) {
+      .logo {
         display: none;
       }
     }
